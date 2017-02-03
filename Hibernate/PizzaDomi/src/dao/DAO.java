@@ -1,13 +1,14 @@
 package dao; 
  
-import java.util.List; 
- 
-import javax.persistence.EntityManager; 
-import javax.persistence.EntityManagerFactory; 
-import javax.persistence.Persistence; 
- 
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import bean.Ingredients;
-import bean.Pate; 
+import bean.Pate;
+import bean.Pizza; 
  
 public class DAO { 
  
@@ -45,13 +46,23 @@ public class DAO {
     return lst; 
   } 
   
-  public void enregistrerPate(Pate ing) { 
-	    em.persist(ing); 
-	     
-	  } 
-	 
-	  public List<Pate> listerPates() { 
-	    List <Pate> lst = em.createQuery("select p from Pate p").getResultList(); 
-	    return lst; 
-	  } 
+  public void enregistrerPate(Pate pate) { 
+    em.persist(pate); 
+     
+  } 
+ 
+  public List<Pate> listerPates() { 
+    List <Pate> lst = em.createQuery("select p from Pate p").getResultList(); 
+    return lst; 
+  } 
+  
+  public void enregistrerPizza(Pizza piz) { 
+    em.persist(piz); 
+     
+  } 
+ 
+  public List<Pizza> listerPizza() { 
+    List <Pizza> lst = em.createQuery("select p from Pate p").getResultList(); 
+    return lst; 
+  } 
 }

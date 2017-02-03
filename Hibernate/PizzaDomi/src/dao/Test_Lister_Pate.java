@@ -14,12 +14,12 @@ public class Test_Lister_Pate {
     DAO dao = new DAO(); 
     dao.ouvrir(); 
      
-    List<Pate> ings = dao.listerPates(); 
+    List<Pate> pates = dao.listerPates(); 
      
     System.out.println(); 
-    System.out.println("nb ingredients = "+ings.size()); 
+    System.out.println("nb ingredients = "+pates.size()); 
      
-    for (Pate in : ings) { 
+    for (Pate in : pates) { 
       System.out.println("Ingredient "+in.getId()+" nom = "+in.getNom()+", prix = "+ in.getPrix()+"€");
     } 
      

@@ -31,11 +31,7 @@ public class Pizza implements Serializable {
     this.nom = n; 
  
   } 
-   
-  public Pizza(String n, double d) { 
-    this.nom = n; 
-  } 
- 
+  
   public Integer getId() { 
     return id; 
   } 

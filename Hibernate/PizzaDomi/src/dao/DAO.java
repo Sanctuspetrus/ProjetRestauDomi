@@ -62,7 +62,7 @@ public class DAO {
   } 
  
   public List<Pizza> listerPizza() { 
-    List <Pizza> lst = em.createQuery("select p from Pate p").getResultList(); 
+    List <Pizza> lst = em.createQuery("select p from Pizza p").getResultList(); 
     return lst; 
   } 
 }

@@ -1,11 +1,15 @@
 package bean; 
  
-import java.io.Serializable; 
- 
-import javax.persistence.Entity; 
-import javax.persistence.GeneratedValue; 
-import javax.persistence.GenerationType; 
-import javax.persistence.Id; 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table; 
  
 @Entity 
@@ -25,6 +29,13 @@ public class Ingredients implements Serializable {
   private String nom; 
    
   private Double prix; 
+  
+	@ManyToMany(
+		    cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+		    mappedBy = "ingredients",
+		    targetEntity = Pizza.class
+		)
+	private Collection <Pizza> groupes = new ArrayList<Pizza>();
  
   public Ingredients(){ 
      

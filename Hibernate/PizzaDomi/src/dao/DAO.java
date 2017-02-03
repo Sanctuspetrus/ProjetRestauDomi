@@ -6,7 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory; 
 import javax.persistence.Persistence; 
  
-import bean.Ingredients; 
+import bean.Ingredients;
+import bean.Pate; 
  
 public class DAO { 
  
@@ -43,4 +44,14 @@ public class DAO {
     List <Ingredients> lst = em.createQuery("select i from Ingredients i").getResultList(); 
     return lst; 
   } 
+  
+  public void enregistrerPate(Pate ing) { 
+	    em.persist(ing); 
+	     
+	  } 
+	 
+	  public List<Pate> listerPates() { 
+	    List <Pate> lst = em.createQuery("select p from Pate p").getResultList(); 
+	    return lst; 
+	  } 
 }

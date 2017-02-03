@@ -15,10 +15,10 @@ public class Test_Lister_Pizza {
 	    List<Pizza> pizs = dao.listerPizza(); 
 	     
 	    System.out.println(); 
-	    System.out.println("nb ingredients = "+pizs.size()); 
+	    System.out.println("nb Pizzas = "+pizs.size()); 
 	     
 	    for (Pizza in : pizs) { 
-	      System.out.println("Ingredient "+in.getId()+" nom = "+in.getNom());
+	      System.out.println("Pizza "+in.getId()+" nom = "+in.getNom());
 	    } 
 	     
 	    dao.fermer(); 

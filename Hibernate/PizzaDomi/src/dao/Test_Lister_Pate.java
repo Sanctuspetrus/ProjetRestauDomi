@@ -17,10 +17,10 @@ public class Test_Lister_Pate {
     List<Pate> pates = dao.listerPates(); 
      
     System.out.println(); 
-    System.out.println("nb ingredients = "+pates.size()); 
+    System.out.println("nb Pates = "+pates.size()); 
      
     for (Pate in : pates) { 
-      System.out.println("Ingredient "+in.getId()+" nom = "+in.getNom()+", prix = "+ in.getPrix()+"€");
+      System.out.println("Pate "+in.getId()+" nom = "+in.getNom()+", prix = "+ in.getPrix()+"€");
     } 
      
     dao.fermer(); 

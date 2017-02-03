@@ -63,6 +63,18 @@ public class Pizza implements Serializable {
  
   public void setNom(String nom) { 
     this.nom = nom; 
-  } 
+  }
+
+public Collection<Ingredients> getIngredients() {
+	return ingredients;
+}
+
+public void addIngredients(Ingredients ingredient) {
+	this.ingredients.add(ingredient);
+}
+
+public void setIngredients(Collection<Ingredients> ingredients) {
+	this.ingredients = ingredients;
+} 
 }
   

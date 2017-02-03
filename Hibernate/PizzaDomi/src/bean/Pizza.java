@@ -35,10 +35,10 @@ public class Pizza implements Serializable {
 		)
 	@JoinTable(
 		    name="recettes",
-		    joinColumns=@JoinColumn(name="idGroupe"),
-		    inverseJoinColumns=@JoinColumn(name="idMembre")
+		    joinColumns=@JoinColumn(name="idPizza"),
+		    inverseJoinColumns=@JoinColumn(name="idIngredients")
 		)
-	private Collection<Ingredients> membres = new ArrayList<Ingredients>();
+	private Collection<Ingredients> ingredients = new ArrayList<Ingredients>();
   
   public Pizza(){ 
 	     

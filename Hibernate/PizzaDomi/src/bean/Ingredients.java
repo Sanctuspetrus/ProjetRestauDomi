@@ -35,7 +35,7 @@ public class Ingredients implements Serializable {
 		    mappedBy = "ingredients",
 		    targetEntity = Pizza.class
 		)
-	private Collection <Pizza> groupes = new ArrayList<Pizza>();
+	private Collection <Pizza> pizzas = new ArrayList<Pizza>();
  
   public Ingredients(){ 
      
@@ -73,5 +73,19 @@ public class Ingredients implements Serializable {
  
   public void setPrix(Double prix) { 
     this.prix = prix; 
-  } 
+  }
+
+public Collection<Pizza> getPizzas() {
+	return pizzas;
+}
+
+public void setPizzas(Collection<Pizza> pizzas) {
+	this.pizzas = pizzas;
+} 
+
+public void addPizza(Pizza p){
+	this.pizzas.add(p);
+}
+  
+
 }

@@ -29,7 +29,7 @@ public class Pizza implements Serializable {
 	private Integer id;
 
 	private String nom;
-	
+
 	/**
 	 * Table de jointure "recette"
 	 */
@@ -74,11 +74,11 @@ public class Pizza implements Serializable {
 		return ingredients;
 	}
 
-	public void addIngredients(Ingredient ingredient) {
-		this.ingredients.add(ingredient);
-	}
-
 	public void setIngredients(Collection<Ingredient> ingredients) {
 		this.ingredients = ingredients;
 	} 
+
+	public void addIngredients(Ingredient ingredient) {
+		this.ingredients.add(ingredient);
+	}
 }

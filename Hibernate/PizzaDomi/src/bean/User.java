@@ -66,9 +66,19 @@ public class User implements Serializable {
 		this.motDePasse = motDePasse;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	} 
+	public Collection<Pizza> getFavoris() {
+		return favoris;
+	}
+
+	public void setFavoris(Collection<Pizza> favoris) {
+		this.favoris = favoris;
+	}
+
+	public void addFavoris(Pizza maPizza){
+		this.favoris.add(maPizza);
+	}
+
+
 
 
 }

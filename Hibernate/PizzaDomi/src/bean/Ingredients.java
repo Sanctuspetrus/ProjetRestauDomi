@@ -30,6 +30,10 @@ public class Ingredients implements Serializable {
    
   private Double prix; 
   
+	/**
+	 * Table de jointure "recette"
+	 */
+  
 	@ManyToMany(
 		    cascade = {CascadeType.PERSIST, CascadeType.MERGE},
 		    mappedBy = "ingredients",

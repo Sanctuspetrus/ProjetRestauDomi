@@ -64,3 +64,5 @@ public class Pate implements Serializable {
 	    this.prix = prix; 
 	  } 
 }
+
+

@@ -51,7 +51,7 @@ public class Pizza implements Serializable {
 
 	@ManyToMany(
 			cascade = {CascadeType.PERSIST, CascadeType.MERGE},
-			mappedBy = "pizza",
+			mappedBy = "favoris",
 			targetEntity = User.class
 			)
 	private Collection <User> users = new ArrayList<User>();

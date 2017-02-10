@@ -40,9 +40,9 @@ public class User implements Serializable {
 			cascade={CascadeType.PERSIST, CascadeType.MERGE}
 			)
 	@JoinTable(
-			name="pizza",
-			joinColumns=@JoinColumn(name="idPizza"),
-			inverseJoinColumns=@JoinColumn(name="idUser")
+			name="favoris",
+			joinColumns=@JoinColumn(name="idUser"),
+			inverseJoinColumns=@JoinColumn(name="idPizza")
 			)
 	private Collection<Pizza> favoris = new ArrayList<Pizza>();
 

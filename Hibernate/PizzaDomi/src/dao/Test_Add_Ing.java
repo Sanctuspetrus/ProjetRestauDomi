@@ -2,7 +2,7 @@ package dao;
  
 import javax.persistence.EntityTransaction; 
  
-import bean.Ingredients; 
+import bean.Ingredient; 
  
 public class Test_Add_Ing { 
  
@@ -14,7 +14,7 @@ public class Test_Add_Ing {
     EntityTransaction tx = dao.em.getTransaction(); 
     tx.begin(); 
      
-    Ingredients ing = new Ingredients("Saucisse", 25.2); 
+    Ingredient ing = new Ingredient("Saucisse", 25.2); 
     dao.enregistrerIngredient(ing); 
      
     tx.commit(); 

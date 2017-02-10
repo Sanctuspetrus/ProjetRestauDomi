@@ -14,7 +14,7 @@ import javax.persistence.Table;
  
 @Entity 
 @Table(name = "ingredients") 
-public class Ingredients implements Serializable { 
+public class Ingredient implements Serializable { 
  
   /** 
    *  
@@ -41,16 +41,16 @@ public class Ingredients implements Serializable {
 		)
 	private Collection <Pizza> pizzas = new ArrayList<Pizza>();
  
-  public Ingredients(){ 
+  public Ingredient(){ 
      
   } 
    
-  public Ingredients(String n){ 
+  public Ingredient(String n){ 
     this.nom = n; 
     this.prix = 0.0; 
   } 
    
-  public Ingredients(String n, double d) { 
+  public Ingredient(String n, double d) { 
     this.nom = n; 
     this.prix = d; 
   } 

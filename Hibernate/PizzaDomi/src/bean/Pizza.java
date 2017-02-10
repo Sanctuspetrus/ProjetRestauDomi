@@ -34,7 +34,7 @@ public class Pizza implements Serializable {
 	 * Table de jointure "recette"
 	 */
 
-	@ManyToMany(targetEntity=Ingredients.class,
+	@ManyToMany(targetEntity=Ingredient.class,
 			cascade={CascadeType.PERSIST, CascadeType.MERGE}
 			)
 	@JoinTable(
@@ -42,7 +42,7 @@ public class Pizza implements Serializable {
 			joinColumns=@JoinColumn(name="idPizza"),
 			inverseJoinColumns=@JoinColumn(name="idIngredients")
 			)
-	private Collection<Ingredients> ingredients = new ArrayList<Ingredients>();
+	private Collection<Ingredient> ingredients = new ArrayList<Ingredient>();
 
 
 	public Pizza(){ 
@@ -70,15 +70,15 @@ public class Pizza implements Serializable {
 		this.nom = nom; 
 	}
 
-	public Collection<Ingredients> getIngredients() {
+	public Collection<Ingredient> getIngredients() {
 		return ingredients;
 	}
 
-	public void addIngredients(Ingredients ingredient) {
+	public void addIngredients(Ingredient ingredient) {
 		this.ingredients.add(ingredient);
 	}
 
-	public void setIngredients(Collection<Ingredients> ingredients) {
+	public void setIngredients(Collection<Ingredient> ingredients) {
 		this.ingredients = ingredients;
 	} 
 }

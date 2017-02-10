@@ -1,7 +1,10 @@
 package dao;
 
+import java.util.List;
+
 import javax.persistence.EntityTransaction;
 
+import bean.Ingredients;
 import bean.Pizza;
 
 public class Test_Add_Pizza {
@@ -15,8 +18,14 @@ public class Test_Add_Pizza {
 		EntityTransaction tx = dao.em.getTransaction(); 
 		tx.begin(); 
 		     
-		Pizza piz = new Pizza("Napadetoile"); 
+		Pizza piz = new Pizza("ladalaise"); 
+		
+		piz.setIngredients(dao.listerIngredients()); 
+		
+		
 		dao.enregistrerPizza(piz); 
+		
+		
 		 
 		tx.commit(); 
 		 

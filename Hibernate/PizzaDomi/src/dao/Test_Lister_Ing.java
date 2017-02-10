@@ -2,7 +2,8 @@ package dao;
  
 import java.util.List; 
  
-import bean.Ingredients; 
+import bean.Ingredients;
+import bean.Pizza; 
  
 public class Test_Lister_Ing { 
  
@@ -19,6 +20,9 @@ public class Test_Lister_Ing {
      
     for (Ingredients in : ings) { 
       System.out.println("Ingredient "+in.getId()+" nom = "+in.getNom()+", prix = "+ in.getPrix()+"€");
+      for (Pizza pizz : in.getPizzas()) {
+    	  System.out.println("- Pizza : "+ pizz.getNom());
+      }
     } 
      
     dao.fermer(); 

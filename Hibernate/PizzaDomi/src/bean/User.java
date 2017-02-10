@@ -37,7 +37,7 @@ public class User implements Serializable {
 			joinColumns=@JoinColumn(name="idUser", insertable=false, updatable=false),
 			inverseJoinColumns=@JoinColumn(name="idPizza", insertable=false, updatable=false)
 			)
-	private Collection<Pizza> pizzas = new ArrayList<Pizza>();
+	private Collection<Pizza> favoris = new ArrayList<Pizza>();
 
 
 

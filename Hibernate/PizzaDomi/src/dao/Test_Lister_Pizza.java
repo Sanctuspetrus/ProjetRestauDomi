@@ -2,6 +2,7 @@ package dao;
 
 import java.util.List;
 
+import bean.Ingredient;
 import bean.Pizza;
 
 public class Test_Lister_Pizza {
@@ -17,8 +18,11 @@ public class Test_Lister_Pizza {
 	    System.out.println(); 
 	    System.out.println("nb Pizzas = "+pizs.size()); 
 	     
-	    for (Pizza in : pizs) { 
-	      System.out.println("Pizza "+in.getId()+" nom = "+in.getNom());
+	    for (Pizza piz : pizs) { 
+	      System.out.println("Pizza "+piz.getId()+" nom = "+piz.getNom());
+	      for(Ingredient in : piz.getIngredients()){
+	    	  System.out.println("- ingredient : "+in.getNom());
+	      }
 	    } 
 	     
 	    dao.fermer(); 

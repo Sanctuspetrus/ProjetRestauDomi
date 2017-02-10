@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 13 Janvier 2017 à 15:08
+-- Généré le :  Ven 10 Février 2017 à 14:14
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -42,6 +42,13 @@ CREATE TABLE `ingredients` (
   `nom` varchar(20) NOT NULL,
   `prix` float NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `ingredients`
+--
+
+INSERT INTO `ingredients` (`id`, `nom`, `prix`) VALUES
+(1, 'Saucisse', 25.2);
 
 -- --------------------------------------------------------
 
@@ -91,12 +98,24 @@ CREATE TABLE `recettes` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `tags`
+--
+
+CREATE TABLE `tags` (
+  `tag` varchar(20) NOT NULL,
+  `idPizza` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `users`
 --
 
 CREATE TABLE `users` (
-  `id` varchar(20) NOT NULL,
-  `motdepasse` varchar(20) NOT NULL
+  `id` int(11) NOT NULL,
+  `nom` varchar(20) NOT NULL,
+  `modDePasse` varchar(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -114,7 +133,8 @@ ALTER TABLE `favoris`
 -- Index pour la table `ingredients`
 --
 ALTER TABLE `ingredients`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nom` (`nom`);
 
 --
 -- Index pour la table `pate`
@@ -142,10 +162,17 @@ ALTER TABLE `recettes`
   ADD KEY `idIngredients` (`idIngredients`);
 
 --
+-- Index pour la table `tags`
+--
+ALTER TABLE `tags`
+  ADD PRIMARY KEY (`tag`),
+  ADD KEY `idPizza` (`idPizza`);
+
+--
 -- Index pour la table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`,`motdepasse`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT pour les tables exportées
@@ -155,7 +182,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `ingredients`
 --
 ALTER TABLE `ingredients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `pate`
 --
@@ -170,6 +197,11 @@ ALTER TABLE `pizza`
 -- AUTO_INCREMENT pour la table `pointdeventes`
 --
 ALTER TABLE `pointdeventes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `users`
+--
+ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

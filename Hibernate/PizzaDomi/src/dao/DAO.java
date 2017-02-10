@@ -68,7 +68,7 @@ public class DAO {
 	} 
 
 
-	public void enregistrerPizza(User usr) { 
+	public void enregistrerUser(User usr) { 
 		em.persist(usr); 
 
 	} 

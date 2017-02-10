@@ -14,13 +14,13 @@ public class Test_Add_User {
 	    EntityTransaction tx = dao.em.getTransaction(); 
 	    tx.begin(); 
 	     
-	    User usr = new User("Jean-Claude Van Dam", "Platipus"); 
+	    User usr = new User("Jean-Claud", "Platipus"); 
 	    
+	    //usr.setFavoris(dao.listerPizza());
 	    dao.enregistrerUser(usr); 
 	     
 	    tx.commit(); 
 	     
-	    dao.em.refresh(usr); 
 	     
 	    System.out.println("id = "+usr.getId()); 
 	     

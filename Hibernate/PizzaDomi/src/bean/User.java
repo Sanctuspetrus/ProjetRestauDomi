@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity 
-@Table(name = "user") 
+@Table(name = "users") 
 public class User implements Serializable {
 
 	/** 
@@ -36,8 +36,8 @@ public class User implements Serializable {
 			)
 	@JoinTable(
 			name="favoris",
-			joinColumns=@JoinColumn(name="idUser", insertable=false, updatable=false),
-			inverseJoinColumns=@JoinColumn(name="idPizza", insertable=false, updatable=false)
+			joinColumns=@JoinColumn(name="idPizza"),
+			inverseJoinColumns=@JoinColumn(name="idUser")
 			)
 	private Collection<Pizza> favoris = new ArrayList<Pizza>();
 
@@ -47,8 +47,7 @@ public class User implements Serializable {
 
 	}
 
-	public User(Integer id, String nom, String pwd) { 
-		this.id = id;
+	public User(String nom, String pwd) { 
 		this.nom = nom;
 		this.motDePasse = pwd; 
 	}

@@ -115,7 +115,7 @@ CREATE TABLE `tags` (
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `nom` varchar(20) NOT NULL,
-  `modDePasse` varchar(20) NOT NULL
+  `motDePasse` varchar(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --

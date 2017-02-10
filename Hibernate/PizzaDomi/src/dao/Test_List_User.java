@@ -17,7 +17,7 @@ public class Test_List_User {
 		    System.out.println("nb Users = "+usrs.size()); 
 		     
 		    for (Users usr : usrs) { 
-		      System.out.println("User nom = "+usr.getId());
+		      System.out.println("User nom = "+usr.getId()+" : nom "+usr.getNom());
 		      for (Pizza pizz : usr.getFavoris()) {
 		    	  System.out.println("- Pizza : "+ pizz.getNom());
 		      }

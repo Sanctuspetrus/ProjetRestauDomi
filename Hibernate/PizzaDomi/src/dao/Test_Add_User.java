@@ -14,9 +14,9 @@ public class Test_Add_User {
 	    EntityTransaction tx = dao.em.getTransaction(); 
 	    tx.begin(); 
 	     
-	    Users usr = new Users("Jean-Claud", "Platipus"); 
+	    Users usr = new Users("Bertrant", "Platipus"); 
 	    
-	    //usr.setFavoris(dao.listerPizza());
+	    usr.setFavoris(dao.listerPizza());
 	    dao.enregistrerUser(usr); 
 	     
 	    tx.commit(); 

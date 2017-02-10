@@ -25,8 +25,10 @@ public class User implements Serializable {
 
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY) 
-	//@Column(name = "id", nullable = false, insertable = false, updatable = false) 
-	private String id; 
+
+	private Integer id;
+
+	private String nom;
 
 	private String motDePasse; 
 
@@ -45,17 +47,28 @@ public class User implements Serializable {
 
 	}
 
-	public User(String id, String pwd) { 
-		this.id = id; 
+	public User(Integer id, String nom, String pwd) { 
+		this.id = id;
+		this.nom = nom;
 		this.motDePasse = pwd; 
 	}
 
-	public String getId() {
+
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
 	public String getMotDePasse() {

@@ -4,3 +4,5 @@
 RemoteSystemsTempFiles/
 
 Hibernate/\.recommenders/
+
+Client/node_modules/

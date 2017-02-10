@@ -8,7 +8,8 @@ import javax.persistence.Persistence;
 
 import bean.Ingredients;
 import bean.Pate;
-import bean.Pizza; 
+import bean.Pizza;
+import bean.User; 
  
 public class DAO { 
  
@@ -65,4 +66,15 @@ public class DAO {
     List <Pizza> lst = em.createQuery("select p from Pizza p").getResultList(); 
     return lst; 
   } 
+  
+  
+  public void enregistrerPizza(User usr) { 
+	    em.persist(usr); 
+	     
+	  } 
+	 
+	  public List<User> listerUser() { 
+	    List <User> lst = em.createQuery("select p from Users p").getResultList(); 
+	    return lst; 
+	  } 
 }

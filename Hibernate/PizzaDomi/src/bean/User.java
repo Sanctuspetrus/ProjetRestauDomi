@@ -11,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity 
@@ -31,11 +31,16 @@ public class User implements Serializable {
 	private String nom;
 
 	private String motDePasse; 
+	
+	/**
+	 * Table de jointure "favoris"
+	 */
 
-	@OneToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE}
+	@ManyToMany(targetEntity=Pizza.class,
+			cascade={CascadeType.PERSIST, CascadeType.MERGE}
 			)
 	@JoinTable(
-			name="favoris",
+			name="pizza",
 			joinColumns=@JoinColumn(name="idPizza"),
 			inverseJoinColumns=@JoinColumn(name="idUser")
 			)

@@ -43,6 +43,18 @@ public class Pizza implements Serializable {
 			inverseJoinColumns=@JoinColumn(name="idIngredients")
 			)
 	private Collection<Ingredient> ingredients = new ArrayList<Ingredient>();
+	
+	
+	/**
+	 * Table de jointure "favoris"
+	 */
+
+	@ManyToMany(
+			cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+			mappedBy = "pizza",
+			targetEntity = User.class
+			)
+	private Collection <User> users = new ArrayList<User>();
 
 
 	public Pizza(){ 
@@ -81,4 +93,18 @@ public class Pizza implements Serializable {
 	public void addIngredients(Ingredient ingredient) {
 		this.ingredients.add(ingredient);
 	}
+
+	public Collection<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Collection<User> users) {
+		this.users = users;
+	}
+	
+	public void addUsers(User user) {
+		this.users.add(user);
+	}
+	
+	
 }

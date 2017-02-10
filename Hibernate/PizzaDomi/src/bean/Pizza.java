@@ -34,7 +34,7 @@ public class Pizza implements Serializable {
 	 * Table de jointure "recette"
 	 */
 
-	@ManyToMany(targetEntity=Ingredient.class,
+	@ManyToMany(targetEntity=Ingredients.class,
 			cascade={CascadeType.PERSIST, CascadeType.MERGE}
 			)
 	@JoinTable(
@@ -42,7 +42,7 @@ public class Pizza implements Serializable {
 			joinColumns=@JoinColumn(name="idPizza"),
 			inverseJoinColumns=@JoinColumn(name="idIngredients")
 			)
-	private Collection<Ingredient> ingredients = new ArrayList<Ingredient>();
+	private Collection<Ingredients> ingredients = new ArrayList<Ingredients>();
 	
 	
 	/**
@@ -52,9 +52,9 @@ public class Pizza implements Serializable {
 	@ManyToMany(
 			cascade = {CascadeType.PERSIST, CascadeType.MERGE},
 			mappedBy = "favoris",
-			targetEntity = User.class
+			targetEntity = Users.class
 			)
-	private Collection <User> users = new ArrayList<User>();
+	private Collection <Users> users = new ArrayList<Users>();
 
 
 	public Pizza(){ 
@@ -82,27 +82,27 @@ public class Pizza implements Serializable {
 		this.nom = nom; 
 	}
 
-	public Collection<Ingredient> getIngredients() {
+	public Collection<Ingredients> getIngredients() {
 		return ingredients;
 	}
 
-	public void setIngredients(Collection<Ingredient> ingredients) {
+	public void setIngredients(Collection<Ingredients> ingredients) {
 		this.ingredients = ingredients;
 	} 
 
-	public void addIngredients(Ingredient ingredient) {
+	public void addIngredients(Ingredients ingredient) {
 		this.ingredients.add(ingredient);
 	}
 
-	public Collection<User> getUsers() {
+	public Collection<Users> getUsers() {
 		return users;
 	}
 
-	public void setUsers(Collection<User> users) {
+	public void setUsers(Collection<Users> users) {
 		this.users = users;
 	}
 	
-	public void addUsers(User user) {
+	public void addUsers(Users user) {
 		this.users.add(user);
 	}
 	

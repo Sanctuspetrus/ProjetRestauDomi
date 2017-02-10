@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity 
 @Table(name = "users") 
-public class User implements Serializable {
+public class Users implements Serializable {
 
 	/** 
 	 *  
@@ -48,11 +48,11 @@ public class User implements Serializable {
 
 
 
-	public User(){
+	public Users(){
 
 	}
 
-	public User(String nom, String pwd) { 
+	public Users(String nom, String pwd) { 
 		this.nom = nom;
 		this.motDePasse = pwd; 
 	}

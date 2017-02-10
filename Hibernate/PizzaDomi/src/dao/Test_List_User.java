@@ -3,7 +3,7 @@ package dao;
 import java.util.List;
 
 import bean.Pizza;
-import bean.User;
+import bean.Users;
 
 public class Test_List_User {
 	  public static void main(String [] args) { 
@@ -11,12 +11,12 @@ public class Test_List_User {
 		    DAO dao = new DAO(); 
 		    dao.ouvrir(); 
 		     
-		    List<User> usrs = dao.listerUser(); 
+		    List<Users> usrs = dao.listerUser(); 
 		     
 		    System.out.println(); 
 		    System.out.println("nb Users = "+usrs.size()); 
 		     
-		    for (User usr : usrs) { 
+		    for (Users usr : usrs) { 
 		      System.out.println("User nom = "+usr.getId());
 		      for (Pizza pizz : usr.getFavoris()) {
 		    	  System.out.println("- Pizza : "+ pizz.getNom());

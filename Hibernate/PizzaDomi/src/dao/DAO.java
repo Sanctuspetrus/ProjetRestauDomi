@@ -6,10 +6,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import bean.Ingredient;
+import bean.Ingredients;
 import bean.Pate;
 import bean.Pizza;
-import bean.User; 
+import bean.Users; 
 
 public class DAO { 
 
@@ -37,13 +37,13 @@ public class DAO {
 		} 
 	} 
 
-	public void enregistrerIngredient(Ingredient ing) { 
+	public void enregistrerIngredient(Ingredients ing) { 
 		em.persist(ing); 
 
 	} 
 
-	public List<Ingredient> listerIngredients() { 
-		List <Ingredient> lst = em.createQuery("select i from Ingredients i").getResultList(); 
+	public List<Ingredients> listerIngredients() { 
+		List <Ingredients> lst = em.createQuery("select i from Ingredients i").getResultList(); 
 		return lst; 
 	} 
 
@@ -68,13 +68,13 @@ public class DAO {
 	} 
 
 
-	public void enregistrerUser(User usr) { 
+	public void enregistrerUser(Users usr) { 
 		em.persist(usr); 
 
 	} 
 
-	public List<User> listerUser() { 
-		List <User> lst = em.createQuery("select p from Users p").getResultList(); 
+	public List<Users> listerUser() { 
+		List <Users> lst = em.createQuery("select p from Users p").getResultList(); 
 		return lst; 
 	} 
 }

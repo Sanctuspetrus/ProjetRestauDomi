@@ -2,7 +2,7 @@ package dao;
 
 import javax.persistence.EntityTransaction;
 
-import bean.User;
+import bean.Users;
 
 public class Test_Add_User {
 	 
@@ -14,7 +14,7 @@ public class Test_Add_User {
 	    EntityTransaction tx = dao.em.getTransaction(); 
 	    tx.begin(); 
 	     
-	    User usr = new User("Jean-Claud", "Platipus"); 
+	    Users usr = new Users("Jean-Claud", "Platipus"); 
 	    
 	    //usr.setFavoris(dao.listerPizza());
 	    dao.enregistrerUser(usr); 

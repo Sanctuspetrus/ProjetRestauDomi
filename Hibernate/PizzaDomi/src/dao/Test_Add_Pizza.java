@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityTransaction;
 
-import bean.Ingredient;
+import bean.Ingredients;
 import bean.Pizza;
 
 public class Test_Add_Pizza {

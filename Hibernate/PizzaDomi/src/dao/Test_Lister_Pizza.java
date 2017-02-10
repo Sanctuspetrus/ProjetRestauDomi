@@ -2,7 +2,7 @@ package dao;
 
 import java.util.List;
 
-import bean.Ingredient;
+import bean.Ingredients;
 import bean.Pizza;
 
 public class Test_Lister_Pizza {
@@ -20,7 +20,7 @@ public class Test_Lister_Pizza {
 	     
 	    for (Pizza piz : pizs) { 
 	      System.out.println("Pizza "+piz.getId()+" nom = "+piz.getNom());
-	      for(Ingredient in : piz.getIngredients()){
+	      for(Ingredients in : piz.getIngredients()){
 	    	  System.out.println("- ingredient : "+in.getNom());
 	      }
 	    } 

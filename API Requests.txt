@@ -1,0 +1,75 @@
+
+// PIZZAS
+Les objets pizza doivent contenir toutes l'infos sur la pizza et ses ingrédients, ainsi que le créateur
+
+GET		/pizzas
+	Liste de toutes les pizzas
+
+GET		/pizzas/id
+	La pizza "id"
+
+GET		/pizzas/id/favoris
+	Réponse : liste de d'utilisateur
+	La liste des utilisateurs ayant la pizza id en favoris
+
+POST	/pizzas
+	Payload : {
+		noire : Liste d'ingrédients,
+		blanche : Liste d'ingrédients
+	}
+	Réponse : liste de pizzzas
+	Liste de pizzas qui contiennent les ingrédients de la liste blanche mais pas ceux de la liste noire
+
+POST	/pizzas
+	Payload : objet pizza
+	Création de la pizza fournie en payload
+
+PUT		/pizzas/id
+	Payload : objet pizza
+	Mise à jour de la pizza "id" avec les inofs fournies en payload
+
+DELETE 	/pizzas/id
+	Suppression de la pizza id (pour l'administration)
+
+// INGRéDIENTS
+GET		/ingredients
+	Réponse : Liste d'ingrédients
+	Liste de tous les ingrédients
+
+GET		/ingrédients/id
+	Réponse : ingrédient
+	L'ingrédient id
+
+// MEMBRES
+
+POST	/connexion
+	Payload : identifiant + mdp
+	Réponse : token de connexion ou null
+	Vérifie si les indentifiants fournies en payload correspondent à un utilisateur et renvoie un token de connexion ou null si la requête échoue
+
+POST	/user
+	Payload : objet user
+	Réponse : nouvel utilisateur
+	Crée un utilisateur avec les données fournit en payload
+
+PUT		/user
+	Payload : objet user + token de connexion
+	Réponse : l'utilisateur modifié
+	Modifie l'utilisateur lié au token avec les données fournit en payload
+
+GET		/user/id
+	Réponse : utilisateur
+	Récupère les informations de l'utilisateur id (seulement les informations publiques)
+
+GET		/compte
+	Payload : token de connexion
+	Réponse : utilisateur
+	Récupère les informations complètes de l'utilisateur lié au token de connexion si il éxiste
+
+GET		/user/id/favoris
+	Réponse : liste de pizzas
+	Récupère les pizzas favorites de l'utilisateur id
+
+GET		/user/id/creation
+	Réponse : liste de pizzas
+	Récupère les pizzas créée par l'utilisateur id

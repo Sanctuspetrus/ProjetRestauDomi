@@ -1,10 +1,7 @@
 package dao;
 
-import java.util.List;
-
 import javax.persistence.EntityTransaction;
 
-import bean.Ingredients;
 import bean.Pizza;
 
 public class Test_Add_Pizza {

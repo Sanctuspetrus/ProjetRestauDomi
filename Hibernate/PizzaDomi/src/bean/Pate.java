@@ -2,6 +2,7 @@ package bean;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,13 +18,15 @@ public class Pate implements Serializable {
 	   */ 
 	  private static final long serialVersionUID = 1L; 
 	 
-	  @Id 
+	  @Id
+	  @Column(name = "id", nullable = false, insertable = false, updatable = false) 
 	  @GeneratedValue(strategy=GenerationType.IDENTITY) 
-	  //@Column(name = "id", nullable = false, insertable = false, updatable = false) 
 	  private Integer id; 
-	   
+	  
+	  @Column(name = "nom")
 	  private String nom; 
-	   
+	  
+	  @Column(name = "prix")
 	  private Double prix; 
 	  
 	  public Pate(){

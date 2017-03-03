@@ -2,7 +2,7 @@
 	<div class="hello">
 		<sidebar :liens="liens"></sidebar>
 		<div class="col-md-9">
-			<img :src="logo">
+			<img class="logo" src="~assets/Pizza-icon.png">
 			<h1>Bienvenue sur Pizza Yolo</h1>
 			<h2>Votre premier choix question pizza</h2>
 			<ul>

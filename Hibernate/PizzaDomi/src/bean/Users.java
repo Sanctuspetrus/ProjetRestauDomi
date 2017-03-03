@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,12 +25,14 @@ public class Users implements Serializable {
 	private static final long serialVersionUID = 1L; 
 
 	@Id 
+	@Column(name = "id", nullable = false, insertable = false, updatable = false) 
 	@GeneratedValue(strategy=GenerationType.IDENTITY) 
-
 	private Integer id;
 
+	@Column(name = "nom")
 	private String nom;
 
+	@Column(name = "motDePasse")
 	private String motDePasse; 
 	
 	/**

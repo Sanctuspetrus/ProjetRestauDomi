@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 	public class Controller {  
 	   
 	 @Autowired  
-	 Dao dao;  
+	 DAO dao;  
 	   
 	 @RequestMapping(value = "/getAllCountries", method = RequestMethod.GET, headers = "Accept=application/json")  
 	 public List<Country> getCountries() {  
@@ -45,5 +45,3 @@ import org.springframework.web.bind.annotation.RestController;
 	 }   
 	}  
 
-	Read more at http://www.java2blog.com/2016/08/spring-rest-hibernate-example.html#H6iYWIwFA5oIOWos.99
-}

@@ -11,7 +11,7 @@ public class Test_Lister_Ing {
   public static void main(String [] args) { 
      
     DAO dao = new DAO(); 
-    dao.ouvrir(); 
+    dao.ouvrir();
      
     List<Ingredients> ings = dao.listerIngredients(); 
      

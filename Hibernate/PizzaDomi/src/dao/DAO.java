@@ -1,6 +1,8 @@
 package dao; 
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -47,6 +49,8 @@ public class DAO {
 		return lst; 
 	} 
 
+
+
 	public void enregistrerPate(Pate pate) { 
 		em.persist(pate); 
 
@@ -60,6 +64,30 @@ public class DAO {
 	public void enregistrerPizza(Pizza piz) { 
 		em.persist(piz); 
 
+	} 
+	
+
+	public List<Pizza> listerPizzasWithIngredients(Map<String, String> whiteList) {
+		
+		String queryString = "select p from Pizza p where ";
+		
+		int index = 1;
+		Set<String> paramKeys = whiteList.keySet();
+		for (String paramKey : paramKeys) {
+			if(Integer.getInteger(whiteList.get(paramKey)) != null){
+				queryString += "`"+paramKey+"`="+whiteList.get(paramKey);
+			}else{
+				queryString += "`"+paramKey+"`='"+whiteList.get(paramKey)+"'";
+			}
+			if(index < paramKeys.size()){
+				queryString += " and ";
+			}
+			index++;
+		}
+		
+		System.out.println(queryString);
+		List <Pizza> lst = em.createQuery(queryString).getResultList(); 
+		return lst; 
 	} 
 
 	public List<Pizza> listerPizza() { 

@@ -9,41 +9,75 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import bean.*;
+
 import dao.DAO;
 
-	  
-	@RestController  
-	public class Controller {  
-	   
-	 @Autowired  
-	 DAO dao;  
-	   
-	 @RequestMapping(value = "/getAllCountries", method = RequestMethod.GET, headers = "Accept=application/json")  
-	 public List<Country> getCountries() {  
-	    
-	  List<Country> listOfCountries = dao.getAllCountries();  
-	  return listOfCountries;  
-	 }  
-	  
-	 @RequestMapping(value = "/getCountry/{id}", method = RequestMethod.GET, headers = "Accept=application/json")  
-	 public Country getCountryById(@PathVariable int id) {  
-	  return dao.getCountry(id);  
-	 }  
-	  
-	 @RequestMapping(value = "/addCountry", method = RequestMethod.POST, headers = "Accept=application/json")  
-	 public void addCountry(@RequestBody Country country) {   
-		 service.addCountry(country);  
-	    
-	 }  
-	  
-	 @RequestMapping(value = "/updateCountry", method = RequestMethod.PUT, headers = "Accept=application/json")  
-	 public void updateCountry(@RequestBody Country country) {  
-		 service.updateCountry(country);  
-	 }  
-	  
-	 @RequestMapping(value = "/deleteCountry/{id}", method = RequestMethod.DELETE, headers = "Accept=application/json")  
-	 public void deleteCountry(@PathVariable("id") int id) {  
-		 service.deleteCountry(id);    
-	 }   
+
+@RestController  
+public class Controller {  
+
+	@Autowired  
+	DAO dao;  
+
+	//***************************PIZZAS*************************************************************************
+	
+	@RequestMapping(value = "/pizzas", method = RequestMethod.GET, headers = "Accept=application/json")  
+	public List<Pizza> getPizzas() {  
+		List<Pizza> listOfPizzas = dao.getPizzas();  
+		return listOfPizzas;  
+	}
+
+	@RequestMapping(value = "/pizzas/{id}", method = RequestMethod.GET, headers = "Accept=application/json")  
+	public List<Pizza> getPizzaById(@PathVariable Integer id) {  
+		List<Pizza> listOfPizzas = dao.getPizzaById(id); 
+		return listOfPizzas;
+	}
+	
+	@RequestMapping(value = "/pizzas/{id}/favoris", method = RequestMethod.GET, headers = "Accept=application/json")  
+	public List<Users> getUserByIdPizza(@PathVariable Integer id) {  
+		List<Users> listOfUsers = dao.getUserByIdPizza(id); 
+		return listOfUsers;
+	}
+	
+	@RequestMapping(value = "/pizzas", method = RequestMethod.POST, headers = "Accept=application/json")  
+	public List<Pizza> getPizzasByIngredients(@RequestBody List<Ingredients> listeNoire, List<Ingredients> listeBlanche) {  
+		List<Pizza> listOfPizzas = dao.getPizzasByIngredients(listeNoire, listeBlanche); 
+		return listOfPizzas;
+	}
+	
+	@RequestMapping(value = "/pizzas", method = RequestMethod.POST, headers = "Accept=application/json")  
+	public void createPizza(@RequestBody Pizza pizzaToCreate) {  
+		dao.createPizza(Pizza);
+	}
+	
+	@RequestMapping(value = "/pizzas/{id}", method = RequestMethod.PUT, headers = "Accept=application/json")  
+	public void updatePizza(@RequestBody Pizza pizza) {  
+		dao.updatePizza(pizza);  
+	}
+	
+	@RequestMapping(value = "/pizzas/{id}", method = RequestMethod.DELETE, headers = "Accept=application/json")  
+	public void deletePizza(@PathVariable("id") int id) {  
+		dao.deletePizza(id);    
 	}  
+	
+	
+	//******************************************INGREDIENTS**************************************************
+
+	@RequestMapping(value = "/ingredients", method = RequestMethod.GET, headers = "Accept=application/json")  
+	public List<Ingredients> getIngredients() {  
+		List<Ingredients> listOfIngredients = dao.getIngredients();  
+		return listOfIngredients;  
+	}
+	
+	@RequestMapping(value = "/ingredients/{id}", method = RequestMethod.GET, headers = "Accept=application/json")  
+	public List<Ingredients> getIngredientsById(@PathVariable Integer id) {  
+		List<Ingredients> listOfIngredients = dao.getIngredientsById(id); 
+		return listOfIngredients;
+	}
+	
+	//*********************************************MEMBRES*****************************************************
+	
+	   
+}  
 

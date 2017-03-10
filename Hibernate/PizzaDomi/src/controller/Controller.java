@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import bean.*;
-
+import bean.Ingredients;
+import bean.Pizza;
+import bean.Users;
 import dao.DAO;
 
 
@@ -101,8 +103,8 @@ public class Controller {
 	}
 	
 	@RequestMapping(value = "/user/{id}/favoris", method = RequestMethod.GET, headers = "Accept=application/json")  
-	public List<Pizza> getUsersFavPizzas(@PathVariable Integer id) {  
-		List<Pizza> listOfPizzas = dao.getUsersFavPizzas(id); 
+	public Collection<Pizza> getUsersFavPizzas(@PathVariable Integer id) {  
+		Collection<Pizza> listOfPizzas = dao.getUsersFavPizzas(id); 
 		return listOfPizzas;
 	}
 	

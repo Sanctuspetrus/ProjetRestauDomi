@@ -29,9 +29,9 @@ public class Controller {
 	}
 
 	@RequestMapping(value = "/pizzas/{id}", method = RequestMethod.GET, headers = "Accept=application/json")  
-	public List<Pizza> getPizzaById(@PathVariable Integer id) {  
-		List<Pizza> listOfPizzas = dao.getPizzaById(id); 
-		return listOfPizzas;
+	public Pizza getPizzaById(@PathVariable Integer id) {  
+		Pizza pizza = dao.getPizzaById(id); 
+		return pizza;
 	}
 	
 	@RequestMapping(value = "/pizzas/{id}/favoris", method = RequestMethod.GET, headers = "Accept=application/json")  
@@ -48,12 +48,12 @@ public class Controller {
 	
 	@RequestMapping(value = "/pizzas", method = RequestMethod.POST, headers = "Accept=application/json")  
 	public void createPizza(@RequestBody Pizza pizzaToCreate) {  
-		dao.createPizza(Pizza);
+		dao.createPizza(pizzaToCreate);
 	}
 	
 	@RequestMapping(value = "/pizzas/{id}", method = RequestMethod.PUT, headers = "Accept=application/json")  
 	public void updatePizza(@RequestBody Pizza pizza) {  
-		dao.updatePizza(pizza);  
+		dao.createPizza(pizza);  
 	}
 	
 	@RequestMapping(value = "/pizzas/{id}", method = RequestMethod.DELETE, headers = "Accept=application/json")  
@@ -77,6 +77,14 @@ public class Controller {
 	}
 	
 	//*********************************************MEMBRES*****************************************************
+	
+	@RequestMapping(value = "/connexion", method = RequestMethod.POST, headers = "Accept=application/json")  
+	public void getPizzasByIngredients(@RequestBody String nom, String mdp) {  
+		return dao.connexionUser(nom, mdp);
+	}
+	
+	
+	
 	
 	   
 }  

@@ -5,10 +5,10 @@ Les objets pizza doivent contenir toutes l'infos sur la pizza et ses ingrédient
 GET		/pizzas
 	Liste de toutes les pizzas
 
-GET		/pizzas/id
+GET		/pizzas/{id}
 	La pizza "id"
 
-GET		/pizzas/id/favoris
+GET		/pizzas/{id}/favoris
 	Réponse : liste de d'utilisateur
 	La liste des utilisateurs ayant la pizza id en favoris
 
@@ -24,11 +24,11 @@ POST	/pizzas
 	Payload : objet pizza
 	Création de la pizza fournie en payload
 
-PUT		/pizzas/id
+PUT		/pizzas/{id}
 	Payload : objet pizza
 	Mise à jour de la pizza "id" avec les inofs fournies en payload
 
-DELETE 	/pizzas/id
+DELETE 	/pizzas/{id}
 	Suppression de la pizza id (pour l'administration)
 
 // INGRéDIENTS
@@ -36,7 +36,7 @@ GET		/ingredients
 	Réponse : Liste d'ingrédients
 	Liste de tous les ingrédients
 
-GET		/ingrédients/id
+GET		/ingrédients/{id}
 	Réponse : ingrédient
 	L'ingrédient id
 
@@ -57,7 +57,7 @@ PUT		/user
 	Réponse : l'utilisateur modifié
 	Modifie l'utilisateur lié au token avec les données fournit en payload
 
-GET		/user/id
+GET		/user/{id}
 	Réponse : utilisateur
 	Récupère les informations de l'utilisateur id (seulement les informations publiques)
 
@@ -66,10 +66,10 @@ GET		/compte
 	Réponse : utilisateur
 	Récupère les informations complètes de l'utilisateur lié au token de connexion si il éxiste
 
-GET		/user/id/favoris
+GET		/user/{id}/favoris
 	Réponse : liste de pizzas
 	Récupère les pizzas favorites de l'utilisateur id
 
-GET		/user/id/creation
+GET		/user/{id}/creation
 	Réponse : liste de pizzas
 	Récupère les pizzas créée par l'utilisateur id

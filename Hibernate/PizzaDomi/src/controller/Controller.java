@@ -37,8 +37,8 @@ public class Controller {
 	}
 	
 	@RequestMapping(value = "/pizzas/{id}/favoris", method = RequestMethod.GET, headers = "Accept=application/json")  
-	public List<Users> getUserByIdPizza(@PathVariable Integer id) {  
-		List<Users> listOfUsers = dao.getUserByIdPizza(id); 
+	public Collection<Users> getUserByIdPizza(@PathVariable Integer id) {  
+		Collection<Users> listOfUsers = dao.getUserByIdPizza(id); 
 		return listOfUsers;
 	}
 	
@@ -82,7 +82,7 @@ public class Controller {
 	//*********************************************MEMBRES*****************************************************
 	
 	@RequestMapping(value = "/connexion", method = RequestMethod.POST, headers = "Accept=application/json")  
-	public int connexionUser(@RequestBody String nom, String mdp) {  
+	public String connexionUser(@RequestBody String nom, String mdp) {  
 		return dao.connexionUser(nom, mdp);
 	}
 	
@@ -92,8 +92,8 @@ public class Controller {
 	}
 	
 	@RequestMapping(value = "/user", method = RequestMethod.PUT, headers = "Accept=application/json")  
-	public int updateUser(@RequestBody String nom, String mdp) {  
-		return dao.updateUser(nom, mdp);
+	public int updateUser(@RequestBody Users user) {  
+		return dao.updateUser(user);
 	}
 	
 	@RequestMapping(value = "/compte", method = RequestMethod.GET, headers = "Accept=application/json")  

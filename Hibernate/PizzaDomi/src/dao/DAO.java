@@ -1,8 +1,7 @@
 package dao; 
 
+import java.util.Collection;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -47,7 +46,12 @@ public class DAO {
 
 	@Transactional
 	public void enregistrerIngredient(Ingredients ing) { 
+
+
+    	EntityTransaction tx = this.em.getTransaction(); 
+    	tx.begin(); 
 		em.persist(ing); 
+		tx.commit();
 
 	} 
 
@@ -71,7 +75,12 @@ public class DAO {
 
 	@Transactional
 	public void enregistrerPate(Pate pate) { 
+
+
+    	EntityTransaction tx = this.em.getTransaction(); 
+    	tx.begin(); 
 		em.persist(pate); 
+		tx.commit();
 
 	} 
 
@@ -90,19 +99,15 @@ public class DAO {
 		tx.commit();
 
 	} 
-	@Transactional
-	public void updatePizza(Integer id, Pizza piz){
-		Pizza prod = getPizzaById(id);
-		
-		piz.setId(id);
-		
-		createPizza(prod);
-	}
-	
+
 	@Transactional
 	public void deletePizza(Integer id){
 		Pizza prod = getPizzaById(id);
+
+    	EntityTransaction tx = this.em.getTransaction(); 
+    	tx.begin(); 
 		em.remove(prod);
+		tx.commit();
 	}
 
 	@Transactional
@@ -143,17 +148,67 @@ public class DAO {
 
 		return piz.get(0);
 	}
+	
+	@Transactional
+	public Collection<Users> getUserByIdPizza(Integer idPizza){
+		Pizza piz = this.getPizzaById(idPizza);
+		return piz.getUsers();
+	}
 
 
 	@Transactional
-	public void enregistrerUser(Users usr) { 
+	public void createUser(Users usr) { 
+
+    	EntityTransaction tx = this.em.getTransaction(); 
+    	tx.begin(); 
 		em.persist(usr); 
+		tx.commit();
 
 	} 
+	
+
+	@Transactional
+	public void createUser(String nom, String mdp ) { 
+		Users usr = new Users(nom, mdp);
+		createUser(usr);
+
+	}
+	
+
+	@Transactional
+	public int updateUser(Users usr ) { 
+		createUser(usr);
+		return 1;
+	}
+
 
 	@Transactional
 	public List<Users> listerUser() { 
 		List <Users> lst = em.createQuery("select p from Users p").getResultList(); 
 		return lst; 
 	} 
+	
+	
+	@Transactional
+	public Users getUser(Integer id){
+		List<Users> usr = em.createQuery("select p from Users p where id="+id.intValue()).getResultList();
+		if(usr.isEmpty())
+			return null;
+
+		return usr.get(0);
+	}
+	
+	@Transactional
+	public Collection<Pizza> getUsersFavPizzas(Integer id){
+		Users usr = this.getUser(id);
+		return usr.getFavoris();
+	}
+	
+	@Transactional
+	public String connexionUser(String nom, String mdp ){
+		List<Users> usr = em.createQuery("select p from Users p where nom="+nom+" and motDePasse="+mdp).getResultList();
+		if(usr.isEmpty())
+			return null;
+		return (Math.random()*1000)+"";
+	}
 }

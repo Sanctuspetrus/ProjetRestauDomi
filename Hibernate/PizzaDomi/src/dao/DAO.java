@@ -1,6 +1,7 @@
 package dao; 
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -114,7 +115,16 @@ public class DAO {
 	public List<Pizza> getPizzasByIngredients(List<Ingredients> blackList, List<Ingredients> whiteList) {
 		
 		String queryString = "select p from Pizza p where ";
-		
+		String query2 = "select p from Pizza p where :numberOfIngredients = (select count(distinct ing.id) from"
+				+ " Pizza p2 inner join p2.ingredients ing where b2.id = p.id and ing IN (:whiteList))";
+		/*int index = 1;
+		for(Ingredients in : whiteList){
+			queryString += "p.ingredients=:in ";
+			if(index != whiteList.size()){
+				queryString += "and ";
+			}
+			index++;
+		}*/
 		/*int index = 1;
 		Set<String> paramKeys = whiteList.keySet();
 		for (String paramKey : paramKeys) {
@@ -129,9 +139,10 @@ public class DAO {
 			index++;
 		}*/
 		
-		System.out.println(queryString);
-		List <Pizza> lst = em.createQuery(queryString).getResultList(); 
+		System.out.println(query2);
+		List <Pizza> lst = em.createQuery(query2).getResultList(); 
 		return lst; 
+		//return null;
 	} 
 
 	@Transactional

@@ -71,19 +71,40 @@ public class Controller {
 	}
 	
 	@RequestMapping(value = "/ingredients/{id}", method = RequestMethod.GET, headers = "Accept=application/json")  
-	public List<Ingredients> getIngredientsById(@PathVariable Integer id) {  
-		List<Ingredients> listOfIngredients = dao.getIngredientsById(id); 
-		return listOfIngredients;
+	public Ingredients getIngredientsById(@PathVariable Integer id) {  
+		Ingredients ingredient = dao.getIngredientsById(id); 
+		return ingredient;
+		
 	}
 	
 	//*********************************************MEMBRES*****************************************************
 	
 	@RequestMapping(value = "/connexion", method = RequestMethod.POST, headers = "Accept=application/json")  
-	public void getPizzasByIngredients(@RequestBody String nom, String mdp) {  
+	public int connexionUser(@RequestBody String nom, String mdp) {  
 		return dao.connexionUser(nom, mdp);
 	}
 	
+	@RequestMapping(value = "/user", method = RequestMethod.POST, headers = "Accept=application/json")  
+	public void createUser(@RequestBody String nom, String mdp) {  
+		dao.createUser(nom, mdp);
+	}
 	
+	@RequestMapping(value = "/user", method = RequestMethod.PUT, headers = "Accept=application/json")  
+	public int updateUser(@RequestBody String nom, String mdp) {  
+		return dao.updateUser(nom, mdp);
+	}
+	
+	@RequestMapping(value = "/compte", method = RequestMethod.GET, headers = "Accept=application/json")  
+	public Users getUser(@PathVariable Integer id) {  
+		Users user = dao.getUser(id); 
+		return user;
+	}
+	
+	@RequestMapping(value = "/user/{id}/favoris", method = RequestMethod.GET, headers = "Accept=application/json")  
+	public List<Pizza> getUsersFavPizzas(@PathVariable Integer id) {  
+		List<Pizza> listOfPizzas = dao.getUsersFavPizzas(id); 
+		return listOfPizzas;
+	}
 	
 	
 	   

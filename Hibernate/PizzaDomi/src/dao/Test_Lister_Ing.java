@@ -13,7 +13,7 @@ public class Test_Lister_Ing {
     DAO dao = new DAO(); 
     dao.ouvrir();
      
-    List<Ingredients> ings = dao.listerIngredients(); 
+    List<Ingredients> ings = dao.getIngredients(); 
      
     System.out.println(); 
     System.out.println("nb ingredients = "+ings.size()); 

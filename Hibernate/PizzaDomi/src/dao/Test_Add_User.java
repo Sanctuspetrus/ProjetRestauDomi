@@ -16,7 +16,7 @@ public class Test_Add_User {
 	     
 	    Users usr = new Users("Bertrant", "Platipus"); 
 	    
-	    usr.setFavoris(dao.listerPizza());
+	    usr.setFavoris(dao.getPizzas());
 	    dao.enregistrerUser(usr); 
 	     
 	    tx.commit(); 

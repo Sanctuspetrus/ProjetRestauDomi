@@ -13,7 +13,7 @@ public class Test_Lister_Pizza {
 	    DAO dao = new DAO(); 
 	    dao.ouvrir(); 
 	     
-	    List<Pizza> pizs = dao.listerPizza(); 
+	    List<Pizza> pizs = dao.getPizzas(); 
 	     
 	    System.out.println(); 
 	    System.out.println("nb Pizzas = "+pizs.size()); 

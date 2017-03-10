@@ -17,10 +17,10 @@ public class Test_Add_Pizza {
 		     
 		Pizza piz = new Pizza("ladalaise"); 
 		
-		piz.setIngredients(dao.listerIngredients()); 
+		piz.setIngredients(dao.getIngredients()); 
 		
 		
-		dao.enregistrerPizza(piz); 
+		dao.createPizza(piz); 
 		
 		
 		 

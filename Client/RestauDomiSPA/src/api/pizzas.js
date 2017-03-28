@@ -1,60 +1,58 @@
 
-export default {
-	/**
-	* @return {Promise} liste des pizzas
-	*/
-	listPizzas () {
-		return new Promise(function(resolve, reject) {
-			if (/* everything turned out fine */) {
-				resolve("Stuff worked!");
-			}
-			else {
-				reject(Error("It broke"));
-			}
+/**
+* @return {Promise} liste des pizzas
+*/
+export function listPizzas () {
+	return new Promise(function(resolve, reject) {
+		var un = 1
+		if (un === 1) {
+			resolve("Stuff worked!");
+		} else {
+			reject(Error("It broke"));
 		}
-	},
+	})
+}
 
-	/**
-	* @return {Promise} liste des pizzas
-	*/
-	getPizzas () {
-		return new Promise(function(resolve, reject) {
-			return {
-				name: 'Chorizo',
-				price: 11,
-				ingredients: [
-					{
-						name: 'Sauce tomate',
-						price: 0.3
-					},
-					{
-						name: 'Sauce épicée',
-						price: 0.6
-					},
-					{
-						name: 'Chorizos',
-						price: 1.3
-					},
-					{
-						name: 'Emmental',
-						price: 0.3
-					},
-					{
-						name: 'Tomates',
-						price: 1.1
-					}
-				],
-				dough: {
-					name: "Dorée",
+/**
+* @return {Promise} liste des pizzas
+*/
+export function getPizzas () {
+	return new Promise(function(resolve, reject) {
+		return {
+			name: 'Chorizo',
+			price: 11,
+			ingredients: [
+				{
+					name: 'Sauce tomate',
 					price: 0.3
 				},
-				autor: 'Pizza Yolo',
-				favoris: []
-			}
-		});
-	}
-
+				{
+					name: 'Sauce épicée',
+					price: 0.6
+				},
+				{
+					name: 'Chorizos',
+					price: 1.3
+				},
+				{
+					name: 'Emmental',
+					price: 0.3
+				},
+				{
+					name: 'Tomates',
+					price: 1.1
+				}
+			],
+			dough: {
+				name: "Dorée",
+				price: 0.3
+			},
+			autor: 'Pizza Yolo',
+			favoris: []
+		}
+	});
 }
+
 /*
 {
 {
@@ -134,4 +132,4 @@ price: 0.3
 },
 autor: 'Pizza Yolo'
 }
-}
+}*/

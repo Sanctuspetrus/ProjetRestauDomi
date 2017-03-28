@@ -1,25 +1,25 @@
 <template>
-	<div class="pizzas">
-		cfghfch
-		<ul>
-			<li v-for="pizza in listPizzas">{{pizza.name}}</li>
-		</ul>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2" v-for="pizza in listPizzas">
+				<pizza :pizza="pizza"></pizza>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
 import sidebar from 'components/Sidebar'
+import pizza from 'components/pizza'
 import apiPizzas from 'src/api/pizzas'
 export default {
 	name: 'pizzas',
 	components: {
-		sidebar
+		sidebar, pizza
 	},
 	data () {
 		var listPizzas = []
-		apiPizzas.listPizzas.then({
-			listPizzas
-		})
+		
 		return {
 			listPizzas: listPizzas
 		}

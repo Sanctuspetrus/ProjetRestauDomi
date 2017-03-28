@@ -15,17 +15,17 @@ export default new Router({
 			component: Hello
 		},
 		{
-			path: '/',
+			path: '/lacarte',
 			name: 'lacarte',
 			component: Pizzas
 		},
 		{
-			path: '/',
+			path: '/commandes',
 			name: 'commandes',
 			component: Commandes
 		},
 		{
-			path: '/',
+			path: '/compte',
 			name: 'compte',
 			component: Compte
 		}

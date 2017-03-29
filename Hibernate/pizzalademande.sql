@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
--- https://www.phpmyadmin.net/
+-- version 4.5.5.1
+-- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 10 Février 2017 à 14:14
--- Version du serveur :  5.7.14
--- Version de PHP :  5.6.25
+-- Généré le :  Mer 29 Mars 2017 à 15:56
+-- Version du serveur :  5.7.11
+-- Version de PHP :  5.6.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -31,6 +31,18 @@ CREATE TABLE `favoris` (
   `idUser` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Contenu de la table `favoris`
+--
+
+INSERT INTO `favoris` (`idPizza`, `idUser`) VALUES
+(1, 4),
+(2, 3),
+(5, 5),
+(2, 5),
+(3, 5),
+(1, 5);
+
 -- --------------------------------------------------------
 
 --
@@ -48,7 +60,11 @@ CREATE TABLE `ingredients` (
 --
 
 INSERT INTO `ingredients` (`id`, `nom`, `prix`) VALUES
-(1, 'Saucisse', 25.2);
+(1, 'Saucisse', 25.2),
+(2, 'Patate', 10.5),
+(3, 'Jambon', 18.3),
+(4, 'peperoni', 3.5),
+(5, 'parmesan', 4.5);
 
 -- --------------------------------------------------------
 
@@ -62,6 +78,14 @@ CREATE TABLE `pate` (
   `prix` float NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Contenu de la table `pate`
+--
+
+INSERT INTO `pate` (`id`, `nom`, `prix`) VALUES
+(1, 'Epaisse', 25.2),
+(2, 'Normale', 25.2);
+
 -- --------------------------------------------------------
 
 --
@@ -72,6 +96,17 @@ CREATE TABLE `pizza` (
   `id` int(11) NOT NULL,
   `nom` varchar(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `pizza`
+--
+
+INSERT INTO `pizza` (`id`, `nom`) VALUES
+(1, 'ladalaise'),
+(2, 'laLourde'),
+(3, 'Labouzeuse'),
+(4, 'Regina'),
+(5, 'royale');
 
 -- --------------------------------------------------------
 
@@ -95,6 +130,24 @@ CREATE TABLE `recettes` (
   `idIngredients` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Contenu de la table `recettes`
+--
+
+INSERT INTO `recettes` (`idPizza`, `idIngredients`) VALUES
+(1, 1),
+(2, 3),
+(1, 4),
+(2, 4),
+(3, 1),
+(4, 5),
+(1, 5),
+(5, 1),
+(5, 2),
+(5, 3),
+(5, 4),
+(5, 5);
+
 -- --------------------------------------------------------
 
 --
@@ -117,6 +170,17 @@ CREATE TABLE `users` (
   `nom` varchar(20) NOT NULL,
   `motDePasse` varchar(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `users`
+--
+
+INSERT INTO `users` (`id`, `nom`, `motDePasse`) VALUES
+(1, 'Jean-Claud', 'Platipus'),
+(2, 'Bernard', 'Platipus'),
+(3, 'jacky', 'Platipus'),
+(4, 'john', 'Platipus'),
+(5, 'a', 'a');
 
 --
 -- Index pour les tables exportées
@@ -182,17 +246,17 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `ingredients`
 --
 ALTER TABLE `ingredients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `pate`
 --
 ALTER TABLE `pate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `pizza`
 --
 ALTER TABLE `pizza`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `pointdeventes`
 --
@@ -202,7 +266,7 @@ ALTER TABLE `pointdeventes`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

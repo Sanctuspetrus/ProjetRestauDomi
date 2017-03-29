@@ -7,3 +7,6 @@ Hibernate/\.recommenders/
 
 \.recommenders/
 Client/node_modules/
+Hibernate/Servers/
+
+Hibernate/SpringRestHibernateExample/

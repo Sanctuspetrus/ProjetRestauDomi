@@ -6,6 +6,7 @@ import Commandes from 'components/Commandes'
 import Compte from 'components/Compte'
 import Connexion from 'components/Connexion'
 import Inscription from 'components/Inscription'
+import Panier from 'components/Panier'
 
 Vue.use(Router)
 
@@ -40,6 +41,11 @@ export default new Router({
 			path: '/inscription',
 			name: 'inscription',
 			component: Inscription
+		},
+		{
+			path: '/panier',
+			name: 'panier',
+			component: Panier
 		}
 	]
 })

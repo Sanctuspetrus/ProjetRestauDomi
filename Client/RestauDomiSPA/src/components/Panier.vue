@@ -7,29 +7,21 @@
       <thead>
         <tr>
           <th>Pizza</th>
-          <th>Prix</th>
           <th>Quantité</th>
+          <th>Prix</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Margarita</td>
-          <td>15€</td>
-          <td>2</td>
-        </tr>
-        <tr>
-          <td>Reine</td>
-          <td>10€</td>
-          <td>5</td>
-        </tr>
-        <tr>
-          <td>Tartiflette</td>
-          <td>5€</td>
-          <td>1</td>
+
+        <tr v-for="pizza in listPizzasPanier">
+          <td>{{pizza.name}}</td>
+          <td>moult</td>
+          <td>{{pizza.price}}€</td>
         </tr>
       </tbody>
     </table>
-
+    <p>Total : {{totalPrice}}€</p>
+    <button type="submit" @click="paiement" class="btn btn-warning">Valider le payement</button>
 
   </template>
 
@@ -41,13 +33,44 @@
     },
     props: {
     },
+    computed: {
+      totalPrice() {
+        var total = 0
+        for (var i = 0; i < this.listPizzasPanier.length; i++) {
+          total = total + this.listPizzasPanier[i].price
+        }
+        return total
+      }
+    },
     data() {
       return {
+        listPizzasPanier: [
+          {name: 'Margarita', price: 15},
+          {name: 'Margarita', price: 15},
+          {name: 'Reine', price: 5},
+          {name: 'Reine', price: 5},
+          {name: 'Reine', price: 5},
+          {name: 'Reine', price: 5},
+          {name: 'Reine', price: 5},
+          {name: 'Reine', price: 5},
+          {name: 'Reine', price: 5},
+          {name: 'Tartiflette', price: 5}
+        ]
       }
     },
     watch: {
     },
     methods: {
+      paiement() {
+        alert('Payé !')
+      },
+      quantity(nom) {
+        var qty = 0
+        for (var p in this.listPizzasPanier) {
+          if (nom === p.name) qty++
+        }
+        return qty
+      }
     }
   }
   </script>

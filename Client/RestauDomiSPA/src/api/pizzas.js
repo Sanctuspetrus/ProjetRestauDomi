@@ -6,9 +6,9 @@ export function listPizzas () {
 	return new Promise(function(resolve, reject) {
 		var un = 1
 		if (un === 1) {
-			resolve("Stuff worked!");
+			resolve('Stuff worked!')
 		} else {
-			reject(Error("It broke"));
+			reject(Error('It broke'))
 		}
 	})
 }
@@ -44,13 +44,13 @@ export function getPizzas () {
 				}
 			],
 			dough: {
-				name: "Dorée",
+				name: 'Dorée',
 				price: 0.3
 			},
 			autor: 'Pizza Yolo',
 			favoris: []
 		}
-	});
+	})
 }
 
 /*

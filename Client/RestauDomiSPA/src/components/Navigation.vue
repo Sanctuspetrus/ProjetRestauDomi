@@ -23,7 +23,7 @@
 						<router-link to="/commandes">Commandes</router-link>
 					</li>
 					<li>
-						<router-link to="/compte">Compte</router-link>
+						<router-link to="/compte"><img class="logo" src="~assets/account-icon.png"></router-link>
 					</li>
 				</ul>
 			</div>

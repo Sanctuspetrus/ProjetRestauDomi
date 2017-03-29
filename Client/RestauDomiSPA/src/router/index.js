@@ -4,6 +4,8 @@ import Hello from 'components/Hello'
 import Pizzas from 'components/Pizzas'
 import Commandes from 'components/Commandes'
 import Compte from 'components/Compte'
+import Connexion from 'components/Connexion'
+import Inscription from 'components/Inscription'
 
 Vue.use(Router)
 
@@ -28,6 +30,16 @@ export default new Router({
 			path: '/compte',
 			name: 'compte',
 			component: Compte
+		},
+		{
+			path: '/connexion',
+			name: 'connexion',
+			component: Connexion
+		},
+		{
+			path: '/inscription',
+			name: 'inscription',
+			component: Inscription
 		}
 	]
 })

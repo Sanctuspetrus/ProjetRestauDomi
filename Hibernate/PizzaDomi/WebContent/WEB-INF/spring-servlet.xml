@@ -41,7 +41,9 @@
    </beans:props>  
   </beans:property>  
  </beans:bean>  
-      
+ 
+ <context:component-scan base-package="controller" />
+ 
  <tx:annotation-driven transaction-manager="transactionManager"/>  
    
  <beans:bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">  
@@ -50,3 +52,5 @@
   
   
 </beans:beans>  
+
+

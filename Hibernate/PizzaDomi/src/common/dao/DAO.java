@@ -8,7 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import common.bean.Ingredients;
@@ -16,7 +16,7 @@ import common.bean.Pate;
 import common.bean.Pizza;
 import common.bean.Users; 
 
-@Service("DAO")
+@Repository("dao")
 public class DAO { 
 
 	EntityManagerFactory emf = null; 

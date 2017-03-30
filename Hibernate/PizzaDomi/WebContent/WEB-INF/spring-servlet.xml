@@ -47,7 +47,7 @@
  <tx:annotation-driven transaction-manager="transactionManager"/>  
    
  <beans:bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">  
-  <beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />  
+  <beans:property name="emf" ref="hibernate4AnnotatedSessionFactory" />  
  </beans:bean>  
   
   

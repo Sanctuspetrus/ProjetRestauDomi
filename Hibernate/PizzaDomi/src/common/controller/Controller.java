@@ -13,56 +13,54 @@ import org.springframework.web.bind.annotation.RestController;
 import common.bean.Ingredients;
 import common.bean.Pizza;
 import common.bean.Users;
-import common.dao.DAO;
+import common.service.PizzaService;
 
 
-@RestController  
+@RestController ("controller") 
 public class Controller {  
 
 	@Autowired  
-	DAO dao = new DAO();  
+	PizzaService service;
 
 	//***************************PIZZAS*************************************************************************
 	
 	@RequestMapping(value = "/pizzas", method = RequestMethod.GET, headers = "Accept=application/json")  
 	public List<Pizza> getPizzas() {  
-		dao.ouvrir();
-		List<Pizza> listOfPizzas = dao.getPizzas();  
-		dao.fermer();
+		List<Pizza> listOfPizzas = service.getPizzas();  
 		return listOfPizzas;  
 	}
 
 	@RequestMapping(value = "/pizzas/{id}", method = RequestMethod.GET, headers = "Accept=application/json")  
 	public Pizza getPizzaById(@PathVariable Integer id) {  
-		Pizza pizza = dao.getPizzaById(id); 
+		Pizza pizza = service.getPizzaById(id); 
 		return pizza;
 	}
 	
 	@RequestMapping(value = "/pizzas/{id}/favoris", method = RequestMethod.GET, headers = "Accept=application/json")  
 	public Collection<Users> getUserByIdPizza(@PathVariable Integer id) {  
-		Collection<Users> listOfUsers = dao.getUserByIdPizza(id); 
+		Collection<Users> listOfUsers = service.getUserByIdPizza(id); 
 		return listOfUsers;
 	}
 	
 	@RequestMapping(value = "/pizzas", method = RequestMethod.POST, headers = "Accept=application/json")  
 	public List<Pizza> getPizzasByIngredients(@RequestBody List<Ingredients> listeNoire, List<Ingredients> listeBlanche) {  
-		List<Pizza> listOfPizzas = dao.getPizzasByIngredients(listeNoire, listeBlanche); 
+		List<Pizza> listOfPizzas = service.getPizzasByIngredients(listeNoire, listeBlanche); 
 		return listOfPizzas;
 	}
 	
 	@RequestMapping(value = "/pizzas", method = RequestMethod.PUT, headers = "Accept=application/json")  
 	public void createPizza(@RequestBody Pizza pizzaToCreate) {  
-		dao.createPizza(pizzaToCreate);
+		service.createPizza(pizzaToCreate);
 	}
 	
 	@RequestMapping(value = "/pizzas/{id}", method = RequestMethod.PUT, headers = "Accept=application/json")  
 	public void updatePizza(@RequestBody Pizza pizza) {  
-		dao.createPizza(pizza);  
+		service.createPizza(pizza);  
 	}
 	
 	@RequestMapping(value = "/pizzas/{id}", method = RequestMethod.DELETE, headers = "Accept=application/json")  
 	public void deletePizza(@PathVariable("id") int id) {  
-		dao.deletePizza(id);    
+		service.deletePizza(id);    
 	}  
 	
 	
@@ -70,13 +68,13 @@ public class Controller {
 
 	@RequestMapping(value = "/ingredients", method = RequestMethod.GET, headers = "Accept=application/json")  
 	public List<Ingredients> getIngredients() {  
-		List<Ingredients> listOfIngredients = dao.getIngredients();  
+		List<Ingredients> listOfIngredients = service.getIngredients();  
 		return listOfIngredients;  
 	}
 	
 	@RequestMapping(value = "/ingredients/{id}", method = RequestMethod.GET, headers = "Accept=application/json")  
 	public Ingredients getIngredientsById(@PathVariable Integer id) {  
-		Ingredients ingredient = dao.getIngredientsById(id); 
+		Ingredients ingredient = service.getIngredientsById(id); 
 		return ingredient;
 		
 	}
@@ -85,28 +83,28 @@ public class Controller {
 	
 	@RequestMapping(value = "/connexion", method = RequestMethod.POST, headers = "Accept=application/json")  
 	public String connexionUser(@RequestBody String nom, String mdp) {  
-		return dao.connexionUser(nom, mdp);
+		return service.connexionUser(nom, mdp);
 	}
 	
 	@RequestMapping(value = "/user", method = RequestMethod.POST, headers = "Accept=application/json")  
 	public void createUser(@RequestBody String nom, String mdp) {  
-		dao.createUser(nom, mdp);
+		service.createUser(nom, mdp);
 	}
 	
 	@RequestMapping(value = "/user", method = RequestMethod.PUT, headers = "Accept=application/json")  
 	public int updateUser(@RequestBody Users user) {  
-		return dao.updateUser(user);
+		return service.updateUser(user);
 	}
 	
 	@RequestMapping(value = "/compte", method = RequestMethod.GET, headers = "Accept=application/json")  
 	public Users getUser(@PathVariable Integer id) {  
-		Users user = dao.getUser(id); 
+		Users user = service.getUser(id); 
 		return user;
 	}
 	
 	@RequestMapping(value = "/user/{id}/favoris", method = RequestMethod.GET, headers = "Accept=application/json")  
 	public Collection<Pizza> getUsersFavPizzas(@PathVariable Integer id) {  
-		Collection<Pizza> listOfPizzas = dao.getUsersFavPizzas(id); 
+		Collection<Pizza> listOfPizzas = service.getUsersFavPizzas(id); 
 		return listOfPizzas;
 	}
 	

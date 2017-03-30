@@ -6,6 +6,7 @@ import * as getters from 'store/getters'
 
 import account from 'store/modules/account'
 import pizzas from 'store/modules/pizzas'
+import carts from 'store/modules/carts'
 
 Vue.use(Vuex)
 
@@ -14,7 +15,8 @@ export default new Vuex.Store({
 	getters,
 	modules: {
 		account,
-		pizzas
+		pizzas,
+		carts
 	},
 	mutations: {
 		increment: state => state.count++,

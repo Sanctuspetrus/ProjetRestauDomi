@@ -4,27 +4,36 @@
 		<ul>
 			<li v-for="pizza in allPizzas">{{pizza.name}}</li>
 		</ul>
+		Igredient: <input type="text" name="" v-model="ingredientName">
+		<button @click="addIngredient(ingredientName)">Ajouter</button>
+		<ul>
+			<li v-for="ing in ingPizza">{{ing}}</li>
+		</ul>
 	</div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import sidebar from 'components/Sidebar'
-import {listPizzas} from 'src/api/pizzas'
 export default {
 	name: 'pizzas',
 	components: {
 		sidebar
 	},
-	created(){
+	created() {
 		this.$store.dispatch('getAllPizzas')
 	},
+	methods: mapActions([
+		'addIngredient'
+	]),
 	computed: mapGetters([
-		'allPizzas'
+		'allPizzas',
+		'ingPizza'
 	]),
 	data () {
 		return {
-			listPizzas: []
+			listPizzas: [],
+			ingredientName: ''
 		}
 	}
 }

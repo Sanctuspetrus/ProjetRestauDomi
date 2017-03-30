@@ -4,12 +4,16 @@ import * as types from 'store/mutations'
 // initial state
 // shape: [{ id, quantity }]
 const state = {
-	allPizzas: []
+	allPizzas: [],
+	newPizza: {
+		ingredients: []
+	}
 }
 
 // getters
 const getters = {
-	allPizzas: state => state.allPizzas
+	allPizzas: state => state.allPizzas,
+	ingPizza: state => state.newPizza.ingredients
 }
 
 // actions
@@ -18,6 +22,9 @@ const actions = {
 		pizzas.getPizzas(pizzas => {
 			commit(types.RECEIVE_PIZZAS, { pizzas })
 		})
+	},
+	addIngredient({ commit }, ingredient) {
+		commit(types.ADD_INGREDIENT, {ingredient})
 	}
 }
 
@@ -25,6 +32,9 @@ const actions = {
 const mutations = {
 	[types.RECEIVE_PIZZAS] (state, {pizzas}) {
 		state.allPizzas = pizzas
+	},
+	[types.ADD_INGREDIENT] (state, {ingredient}) {
+		state.newPizza.ingredients.push(ingredient)
 	},
 
 	[types.CHECKOUT_FAILURE] (state, { savedCartItems }) {

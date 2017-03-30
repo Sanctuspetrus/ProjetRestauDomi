@@ -2,7 +2,7 @@
 	<div class="pizzas">
 		cfghfch
 		<ul>
-			<li v-for="pizza in listPizzas">{{pizza.name}}</li>
+			<li v-for="pizza in allPizzas">{{pizza.name}}</li>
 		</ul>
 	</div>
 </template>
@@ -16,14 +16,12 @@ export default {
 	components: {
 		sidebar
 	},
-	ready(){
-		listPizzas.then(yolo => {
-			this.listPizzas
-		})
+	created(){
+		this.$store.dispatch('getAllPizzas')
 	},
-	 methods: mapActions([
-    'addToCart'
-  ]),
+	computed: mapGetters([
+		'allPizzas'
+	]),
 	data () {
 		return {
 			listPizzas: []

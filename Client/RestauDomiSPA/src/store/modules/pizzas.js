@@ -9,7 +9,10 @@ const state = {
 	allIngredients: [],
 	allDoughs: [],
 	newPizza: {
-		ingredients: []
+		name: '',
+		price: 0,
+		ingredients: [],
+		dough: 1
 	}
 }
 
@@ -18,7 +21,8 @@ const getters = {
 	allPizzas: state => state.allPizzas,
 	allIngredients: state => state.allIngredients,
 	allDoughs: state => state.allDoughs,
-	ingPizza: state => state.newPizza.ingredients
+	ingPizza: state => state.newPizza.ingredients,
+	newPizza: state => state.newPizza
 }
 
 // actions
@@ -39,6 +43,15 @@ const actions = {
 			var error = { decription: "can't add ingredient" }
 			commit(types.SET_ERROR, {error})
 		}
+	},
+	setName({ commit }, name) {
+		commit(types.SET_NEW_PIZZA_NAME, {name})
+	},
+	setPrice({ commit }, price) {
+		commit(types.SET_NEW_PIZZA_PRICE, {price})
+	},
+	setDough({ commit }, dough) {
+		commit(types.SET_NEW_PIZZA_DOUGH, {dough})
 	}
 }
 
@@ -55,6 +68,15 @@ const mutations = {
 	},
 	[types.ADD_INGREDIENT] (state, {ingredient}) {
 		state.newPizza.ingredients.push(ingredient)
+	},
+	[types.SET_NEW_PIZZA_NAME] (state, {name}) {
+		state.newPizza.name = name
+	},
+	[types.SET_NEW_PIZZA_PRICE] (state, {price}) {
+		state.newPizza.price = price
+	},
+	[types.SET_NEW_PIZZA_DOUGH] (state, {dough}) {
+		state.newPizza.dough = dough
 	}
 }
 

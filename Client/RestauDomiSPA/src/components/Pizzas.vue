@@ -33,7 +33,7 @@
 			</div>
 		</div>
 		<button @click="toast">Toast</button>
-		
+
 	</div>
 
 
@@ -54,7 +54,7 @@ export default {
 	},
 	methods: {
 		toast () {
-			this.$toasted.show("I'm toasted!")
+			this.$toasted.info("I'm toasted!", {duration: 500})
 		},
 		findIngredientById(id) {
 			return this.allIngredients.find(ing => ing.id === id)

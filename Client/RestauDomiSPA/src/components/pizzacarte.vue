@@ -1,23 +1,37 @@
 <template>
-	<div class="pizzacarte">
-
+	<div class="pizza">
+		<h1>{{name}}</h1>
+		<p>{{price}}€</p>
+		Ingrédients:
+		<ul>
+			<li v-for="ing in listIngredients">{{ing.name}}</li>
+		</ul>
+		<!-- <p>Pâte: {{dough}}</p> -->
+		<p>Auteur: {{autor}}</p>
 	</div>
 </template>
 
 <script>
-import sidebar from 'components/Sidebar'
-import apiPizzas from 'src/api/pizzas'
 
 export default {
-	name: 'pizzacarte',
-	components: {
-		sidebar
+	name: 'pizza',
+	props: {
+		name: String,
+		price: Number,
+		ingredients: {
+			type: Array,
+			default: () => { return [] }
+		},
+		dough: {
+			type: Object,
+			default: () => { return { name: '', price: 0 } }
+		},
+		autor: String
 	},
-
-	data () {
-		var listPizzas = apiPizzas.listPizzas
-		return {
-			listPizzas: listPizzas
+	computed: {
+		listIngredients () {
+			console.log(this.ingredients)
+			return this.ingredients
 		}
 	}
 }

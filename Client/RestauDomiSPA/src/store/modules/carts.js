@@ -2,7 +2,7 @@
 import * as types from 'src/store/mutations'
 
 // initial state
-// shape: [{ id, quantity }]
+// shape: [{ pizza, amount }]
 const state = {
 	content: []
 }

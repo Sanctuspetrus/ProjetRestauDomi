@@ -1,10 +1,20 @@
 <template>
 	<div class="pizzas">
-		cfghfch
 		<ul>
-			<li v-for="pizza in allPizzas">{{pizza.name}}</li>
+			<li v-for="pizza in listPizzas">
+				<pizza-carte
+				:name="pizza.name"
+				:price="pizza.price"
+				:ingredients="pizza.ingredients"
+				:dough="pizza.dough"
+				:autor="pizza.autor"
+				></pizza-carte>
+			</li>
 		</ul>
-		Igredient: <input type="text" name="" v-model="ingredientName">
+		Ingredient:
+		<select v-model="ingredientName">
+			<option v-for="ing in allIngredients" :value="ing.id">{{ing.name}}</option>
+		</select>
 		<button @click="addIngredient(ingredientName)">Ajouter</button>
 		<ul>
 			<li v-for="ing in ingPizza">{{ing}}</li>
@@ -15,24 +25,55 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import sidebar from 'components/Sidebar'
+import pizzaCarte from 'components/pizzaCarte'
 export default {
 	name: 'pizzas',
 	components: {
-		sidebar
+		sidebar, pizzaCarte
 	},
-	created() {
+	created () {
 		this.$store.dispatch('getAllPizzas')
 	},
-	methods: mapActions([
-		'addIngredient'
-	]),
-	computed: mapGetters([
-		'allPizzas',
-		'ingPizza'
-	]),
+	methods: {
+		findIngredientById(id) {
+			return this.allIngredients.find(ing => ing.id === id)
+		},
+		findDoughById(id) {
+			return this.allDoughs.find(dough => dough.id === id)
+		},
+		...mapActions([
+			'addIngredient'
+		])
+	},
+	computed: {
+		listPizzas () {
+			return this.allPizzas.map(pizza => {
+				var ingredients = []
+				var dough = { name: '', price: 0 }
+				for (var ing in pizza.ingredients) {
+					var ingredient = this.findIngredientById(pizza.ingredients[ing])
+					if (ingredient !== undefined) {
+						ingredients.push(ingredient)
+					}
+				}
+				var d = this.findDoughById(pizza.ingredients[d])
+				if (d !== undefined) {
+					dough = d
+				}
+				pizza.ingredients = ingredients
+				pizza.dough = dough
+				return pizza
+			})
+		},
+		...mapGetters([
+			'allPizzas',
+			'allIngredients',
+			'allDoughs',
+			'ingPizza'
+		])
+	},
 	data () {
 		return {
-			listPizzas: [],
 			ingredientName: ''
 		}
 	}

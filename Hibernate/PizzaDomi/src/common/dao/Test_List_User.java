@@ -9,7 +9,6 @@ public class Test_List_User {
 	  public static void main(String [] args) { 
 		     
 		    DAO dao = new DAO(); 
-		    dao.ouvrir(); 
 		     
 		    List<Users> usrs = dao.listerUser(); 
 		     
@@ -23,6 +22,5 @@ public class Test_List_User {
 		      }
 		    } 
 		     
-		    dao.fermer(); 
 		  } 
 }

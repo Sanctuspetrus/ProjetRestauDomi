@@ -10,11 +10,6 @@ public class Test_Add_Pizza {
 	public static void main(String [] args) { 
 	     
 		DAO dao = new DAO(); 
-		dao.ouvrir(); 
-		     
-		EntityTransaction tx = dao.em.getTransaction(); 
-		tx.begin(); 
-		     
 		Pizza piz = new Pizza("ladalaise"); 
 		
 		piz.setIngredients(dao.getIngredients()); 
@@ -24,13 +19,7 @@ public class Test_Add_Pizza {
 		
 		
 		 
-		tx.commit(); 
-		 
-		dao.em.refresh(piz); 
-		 
 		System.out.println("id = "+piz.getId()); 
 		     
-		     
-		dao.fermer(); 
 	} 
 }

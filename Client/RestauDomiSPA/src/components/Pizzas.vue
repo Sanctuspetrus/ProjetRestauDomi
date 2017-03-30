@@ -19,7 +19,22 @@
 		<ul>
 			<li v-for="ing in ingPizza">{{ing}}</li>
 		</ul>
+
+
+
+		<div class="row">
+			<div class="col-sm-4" v-for="pizza in allPizzas">
+				<div class="panel panel-default btn-default" @click="addPizzaToCart(pizza), popUp()">
+					<div class="panel-heading" style="font-weight:bold; font-size:18px">{{pizza.name}}</div>
+					<div class="panel-body">
+						<p>{{pizza.price}}€</p>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
+
+
 </template>
 
 <script>
@@ -82,21 +97,21 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-	h1, h2 {
-		font-weight: normal;
-	}
+h1, h2 {
+	font-weight: normal;
+}
 
-	ul {
-		list-style-type: none;
-		padding: 0;
-	}
+ul {
+	list-style-type: none;
+	padding: 0;
+}
 
-	li {
-		display: inline-block;
-		margin: 0 10px;
-	}
+li {
+	display: inline-block;
+	margin: 0 10px;
+}
 
-	a {
-		color: #f9a400;
-	}
+a {
+	color: #f9a400;
+}
 </style>

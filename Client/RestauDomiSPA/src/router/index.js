@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Hello from 'components/Hello'
 import Pizzas from 'components/Pizzas'
 import Commandes from 'components/Commandes'
+import CreationPizza from 'components/CreationPizza'
 import Compte from 'components/Compte'
 import Connexion from 'components/Connexion'
 import Inscription from 'components/Inscription'
@@ -21,6 +22,11 @@ export default new Router({
 			path: '/lacarte',
 			name: 'lacarte',
 			component: Pizzas
+		},
+		{
+			path: '/creezVotrePizza',
+			name: 'créez votre pizza',
+			component: CreationPizza
 		},
 		{
 			path: '/commandes',

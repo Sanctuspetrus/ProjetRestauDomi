@@ -26,7 +26,6 @@ public class Controller {
 	
 	@RequestMapping(value = "/pizzas", method = RequestMethod.GET, headers = "Accept=application/json")  
 	public List<Pizza> getPizzas() {  
-		System.out.println("bite");
 		dao.ouvrir();
 		List<Pizza> listOfPizzas = dao.getPizzas();  
 		dao.fermer();

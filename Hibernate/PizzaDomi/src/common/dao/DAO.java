@@ -3,11 +3,9 @@ package common.dao;
 import java.util.Collection;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,105 +16,78 @@ import common.bean.Users;
 
 @Repository("dao")
 public class DAO { 
-
-	EntityManagerFactory emf = null; 
-	EntityManager em = null; 
 	
-	public DAO(){
-		
-	}
+	 @Autowired
+	 private SessionFactory sessionFactory;
+	 
+	 
+	 public void setSessionFactory(SessionFactory sf) {
+		 this.sessionFactory = sf;
+	 }
+	 
 
-	public void ouvrir() { 
-		try { 
-			emf = Persistence.createEntityManagerFactory("PizzaDomi"); 
-			em = emf.createEntityManager();     
-		} 
-		catch (Exception e) { 
-			System.out.println("Erreur DAO.ouvrir "+e.getMessage()); 
-		} 
-
-	} 
-
-	public void fermer() { 
-		try { 
-			em.close(); 
-			emf.close(); 
-		} 
-		catch (Exception e) { 
-			System.out.println("Erreur DAO.fermer "+e.getMessage()); 
-		} 
-	} 
-
-	@Transactional
+	
 	public void enregistrerIngredient(Ingredients ing) { 
 
-
-    	EntityTransaction tx = this.em.getTransaction(); 
-    	tx.begin(); 
-		em.persist(ing); 
-		tx.commit();
+		  Session session = this.sessionFactory.getCurrentSession();
+		  session.persist(ing);
 
 	} 
 
-	@Transactional
-	public List<Ingredients> getIngredients() { 
-		List <Ingredients> lst = em.createQuery("select i from Ingredients i").getResultList(); 
+	
+	public List<Ingredients> getIngredients() {
+		Session session = this.sessionFactory.getCurrentSession();
+		List<Ingredients> lst = session.createQuery("from Ingredients").getResultList();
 		return lst; 
 	} 
 
-	@Transactional
+	
 	public Ingredients getIngredientsById(Integer id){
-		List<Ingredients> lst = em.createQuery("select i from Ingredients i where id="+id.intValue()).getResultList();
-		if(lst.isEmpty())
-			return null;
+		Session session = this.sessionFactory.getCurrentSession();
+		Ingredients ing = (Ingredients) session.load(Ingredients.class, new Integer(id));
 
-		return lst.get(0);
+		return ing;
 	}
 
-	@Transactional
+	
 	public void enregistrerPate(Pate pate) { 
 
 
-    	EntityTransaction tx = this.em.getTransaction(); 
-    	tx.begin(); 
-		em.persist(pate); 
-		tx.commit();
+
+		  Session session = this.sessionFactory.getCurrentSession();
+		  session.persist(pate);
 
 	} 
 
-	@Transactional
 	public List<Pate> listerPates() { 
-		List <Pate> lst = em.createQuery("select p from Pate p").getResultList(); 
+		Session session = this.sessionFactory.getCurrentSession();
+		List<Pate> lst = session.createQuery("from Pate").getResultList();
 		return lst; 
 	} 
 
-	@Transactional
 	public void createPizza(Pizza piz) {
 
-    	EntityTransaction tx = this.em.getTransaction(); 
-    	tx.begin(); 
-		em.persist(piz); 
-		tx.commit();
+		  Session session = this.sessionFactory.getCurrentSession();
+		  session.persist(piz);
 
 	} 
 
-	@Transactional
 	public void deletePizza(Integer id){
-		Pizza prod = getPizzaById(id);
-
-    	EntityTransaction tx = this.em.getTransaction(); 
-    	tx.begin(); 
-		em.remove(prod);
-		tx.commit();
+		 Session session = this.sessionFactory.getCurrentSession();
+		 Pizza p = (Pizza) session.load(Pizza.class, new Integer(id));
+		 if (null != p) {
+			 session.delete(p);
+		}
+		 
 	}
-
-	@Transactional
+/*
+	
 	public List<Pizza> getPizzasByIngredients(List<Ingredients> blackList, List<Ingredients> whiteList) {
 		
 		String queryString = "select p from Pizza p where ";
 		String query2 = "select p from Pizza p where :numberOfIngredients = (select count(distinct ing.id) from"
 				+ " Pizza p2 inner join p2.ingredients ing where b2.id = p.id and ing IN (:whiteList))";
-		/*int index = 1;
+		int index = 1;
 		for(Ingredients in : whiteList){
 			queryString += "p.ingredients=:in ";
 			if(index != whiteList.size()){
@@ -136,71 +107,68 @@ public class DAO {
 				queryString += " and ";
 			}
 			index++;
-		}*/
+		}
 		
 		System.out.println(query2);
 		List <Pizza> lst = em.createQuery(query2).getResultList(); 
 		return lst; 
 		//return null;
 	} 
-
-	@Transactional
+*/
+	
 	public List<Pizza> getPizzas() { 
-		List <Pizza> lst = em.createQuery("select p from Pizza p").getResultList(); 
+		Session session = this.sessionFactory.getCurrentSession();
+		List<Pizza> lst = session.createQuery("from Pizza").getResultList();
 		return lst; 
 	} 
 	
-	@Transactional
+	
 	public Pizza getPizzaById(Integer id){
-		List<Pizza> piz = em.createQuery("select p from produit p where id="+id.intValue()).getResultList();
-		if(piz.isEmpty())
-			return null;
+		Session session = this.sessionFactory.getCurrentSession();
+		Pizza piz = (Pizza) session.load(Pizza.class, new Integer(id));
 
-		return piz.get(0);
+		return piz;
 	}
 	
-	@Transactional
+	
 	public Collection<Users> getUserByIdPizza(Integer idPizza){
 		Pizza piz = this.getPizzaById(idPizza);
 		return piz.getUsers();
 	}
 
-	@Transactional
+	
 	public void createUser(Users usr) { 
 
-    	EntityTransaction tx = this.em.getTransaction(); 
-    	tx.begin(); 
-		em.persist(usr); 
-		tx.commit();
+		  Session session = this.sessionFactory.getCurrentSession();
+		  session.persist(usr);
 
 	} 
 	
-	@Transactional
+	
 	public void createUser(String nom, String mdp ) { 
 		Users usr = new Users(nom, mdp);
 		createUser(usr);
 
 	}
 	
-	@Transactional
+	
 	public int updateUser(Users usr ) { 
 		createUser(usr);
 		return 1;
 	}
 
-	@Transactional
+	
 	public List<Users> listerUser() { 
-		List <Users> lst = em.createQuery("select p from Users p").getResultList(); 
+		Session session = this.sessionFactory.getCurrentSession();
+		List<Users> lst = session.createQuery("from Users").getResultList();
 		return lst; 
 	} 
 	
-	@Transactional
+	
 	public Users getUser(Integer id){
-		List<Users> usr = em.createQuery("select p from Users p where id="+id.intValue()).getResultList();
-		if(usr.isEmpty())
-			return null;
-
-		return usr.get(0);
+		Session session = this.sessionFactory.getCurrentSession();
+		Users usr = (Users) session.load(Users.class, new Integer(id));
+		return usr;
 	}
 	
 	@Transactional
@@ -211,8 +179,9 @@ public class DAO {
 	
 	@Transactional
 	public String connexionUser(String nom, String mdp ){
-		List<Users> usr = em.createQuery("select p from Users p where nom="+nom+" and motDePasse="+mdp).getResultList();
-		if(usr.isEmpty())
+		Session session = this.sessionFactory.getCurrentSession();
+		List<Users> lst = session.createQuery("select p from Users p where nom="+nom+" and motDePasse="+mdp).getResultList();
+		if(lst.isEmpty())
 			return null;
 		return (Math.random()*1000)+"";
 	}

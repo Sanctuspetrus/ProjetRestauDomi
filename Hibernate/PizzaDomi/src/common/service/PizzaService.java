@@ -18,10 +18,6 @@ public class PizzaService {
 	@Autowired
 	DAO dao;
 	
-	public PizzaService(){
-		dao.ouvrir();
-	}
-
 	@Transactional
 	public List<Pizza> getPizzas() {
 		List<Pizza> listOfPizzas = dao.getPizzas();  
@@ -39,13 +35,13 @@ public class PizzaService {
 		Collection<Users> listOfUsers = dao.getUserByIdPizza(id); 
 		return listOfUsers;
 	}
-
+/*
 	@Transactional
 	public List<Pizza> getPizzasByIngredients(List<Ingredients> listeNoire, List<Ingredients> listeBlanche) {
 		List<Pizza> listOfPizzas = dao.getPizzasByIngredients(listeNoire, listeBlanche); 
 		return listOfPizzas;
 	}
-
+*/
 	@Transactional
 	public void createPizza(Pizza pizza) {
 		dao.createPizza(pizza);

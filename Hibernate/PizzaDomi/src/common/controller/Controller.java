@@ -41,13 +41,13 @@ public class Controller {
 		Collection<Users> listOfUsers = service.getUserByIdPizza(id); 
 		return listOfUsers;
 	}
-	
+	/*
 	@RequestMapping(value = "/pizzas", method = RequestMethod.POST, headers = "Accept=application/json")  
 	public List<Pizza> getPizzasByIngredients(@RequestBody List<Ingredients> listeNoire, List<Ingredients> listeBlanche) {  
 		List<Pizza> listOfPizzas = service.getPizzasByIngredients(listeNoire, listeBlanche); 
 		return listOfPizzas;
 	}
-	
+	*/
 	@RequestMapping(value = "/pizzas", method = RequestMethod.PUT, headers = "Accept=application/json")  
 	public void createPizza(@RequestBody Pizza pizzaToCreate) {  
 		service.createPizza(pizzaToCreate);

@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import sidebar from 'components/Sidebar'
 import {listPizzas} from 'src/api/pizzas'
 export default {
@@ -20,6 +21,9 @@ export default {
 			this.listPizzas
 		})
 	},
+	 methods: mapActions([
+    'addToCart'
+  ]),
 	data () {
 		return {
 			listPizzas: []

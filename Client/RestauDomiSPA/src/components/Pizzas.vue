@@ -32,7 +32,10 @@
 				</div>
 			</div>
 		</div>
+		<button @click="toast">Toast</button>
+		
 	</div>
+
 
 
 </template>
@@ -50,6 +53,9 @@ export default {
 		this.$store.dispatch('getAllPizzas')
 	},
 	methods: {
+		toast () {
+			this.$toasted.show("I'm toasted!")
+		},
 		findIngredientById(id) {
 			return this.allIngredients.find(ing => ing.id === id)
 		},

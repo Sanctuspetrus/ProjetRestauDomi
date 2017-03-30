@@ -23,6 +23,20 @@
     <p>Total : {{totalPrice}}€</p>
     <button type="submit" @click="paiement" class="btn btn-warning">Valider le payement</button>
 
+
+    <div class="row">
+      <div class="col-sm-4" v-for="pizza in listPizzasPanier">
+        <div class="panel panel-default">
+          <div class="panel-heading" style="font-weight:bold; font-size:18px">{{pizza.name}}</div>
+          <div class="panel-body">
+            <p>{{pizza.price}}€</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
   </template>
 
   <script>
@@ -54,7 +68,7 @@
           {name: 'Reine', price: 5},
           {name: 'Reine', price: 5},
           {name: 'Reine', price: 5},
-          {name: 'Tartiflette', price: 5}
+          {name: 'Tartiflette', price: 20}
         ]
       }
     },

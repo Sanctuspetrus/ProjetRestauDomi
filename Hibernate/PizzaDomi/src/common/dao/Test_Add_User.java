@@ -1,8 +1,8 @@
-package dao;
+package common.dao;
 
 import javax.persistence.EntityTransaction;
 
-import bean.Users;
+import common.bean.Users;
 
 public class Test_Add_User {
 	 

@@ -1,7 +1,6 @@
-package dao; 
+package common.dao; 
 
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -12,17 +11,20 @@ import javax.persistence.Persistence;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import bean.Ingredients;
-import bean.Pate;
-import bean.Pizza;
-import bean.Users; 
-
+import common.bean.Ingredients;
+import common.bean.Pate;
+import common.bean.Pizza;
+import common.bean.Users; 
 
 @Service("DAO")
 public class DAO { 
 
 	EntityManagerFactory emf = null; 
 	EntityManager em = null; 
+	
+	public DAO(){
+		
+	}
 
 	public void ouvrir() { 
 		try { 
@@ -62,7 +64,6 @@ public class DAO {
 		return lst; 
 	} 
 
-	
 	@Transactional
 	public Ingredients getIngredientsById(Integer id){
 		List<Ingredients> lst = em.createQuery("select i from Ingredients i where id="+id.intValue()).getResultList();
@@ -71,8 +72,6 @@ public class DAO {
 
 		return lst.get(0);
 	}
-
-
 
 	@Transactional
 	public void enregistrerPate(Pate pate) { 
@@ -166,7 +165,6 @@ public class DAO {
 		return piz.getUsers();
 	}
 
-
 	@Transactional
 	public void createUser(Users usr) { 
 
@@ -177,7 +175,6 @@ public class DAO {
 
 	} 
 	
-
 	@Transactional
 	public void createUser(String nom, String mdp ) { 
 		Users usr = new Users(nom, mdp);
@@ -185,20 +182,17 @@ public class DAO {
 
 	}
 	
-
 	@Transactional
 	public int updateUser(Users usr ) { 
 		createUser(usr);
 		return 1;
 	}
 
-
 	@Transactional
 	public List<Users> listerUser() { 
 		List <Users> lst = em.createQuery("select p from Users p").getResultList(); 
 		return lst; 
 	} 
-	
 	
 	@Transactional
 	public Users getUser(Integer id){

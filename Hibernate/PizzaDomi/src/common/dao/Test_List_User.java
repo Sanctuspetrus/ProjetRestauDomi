@@ -1,9 +1,9 @@
-package dao;
+package common.dao;
 
 import java.util.List;
 
-import bean.Pizza;
-import bean.Users;
+import common.bean.Pizza;
+import common.bean.Users;
 
 public class Test_List_User {
 	  public static void main(String [] args) { 

@@ -1,9 +1,9 @@
-package dao; 
+package common.dao; 
  
-import java.util.List; 
- 
-import bean.Ingredients;
-import bean.Pizza; 
+import java.util.List;
+
+import common.bean.Ingredients;
+import common.bean.Pizza; 
  
 public class Test_Lister_Ing { 
  

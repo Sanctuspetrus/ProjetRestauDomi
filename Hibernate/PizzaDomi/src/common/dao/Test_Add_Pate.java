@@ -1,8 +1,8 @@
-package dao; 
+package common.dao; 
  
 import javax.persistence.EntityTransaction;
 
-import bean.Pate; 
+import common.bean.Pate; 
  
 public class Test_Add_Pate {
  

@@ -1,19 +1,18 @@
-package dao;
+package common.dao;
 
 import java.util.List;
 
-import bean.Ingredients;
-import bean.Pizza;
+import common.bean.Ingredients;
+import common.bean.Pizza;
 
-public class Test_Lister_Pizza {
- 
-	   
-	  public static void main(String [] args) { 
+public class Test_lister_Pizzas_Withing {
+
+	public static void main(String[] args) {
 	     
 	    DAO dao = new DAO(); 
 	    dao.ouvrir(); 
-	     
-	    List<Pizza> pizs = dao.getPizzas(); 
+	    List<Ingredients> lst = dao.getIngredients();
+	    List<Pizza> pizs = dao.getPizzasByIngredients(lst, lst); 
 	     
 	    System.out.println(); 
 	    System.out.println("nb Pizzas = "+pizs.size()); 
@@ -28,5 +27,4 @@ public class Test_Lister_Pizza {
 	    dao.fermer(); 
 	  } 
 	   
-	
 }

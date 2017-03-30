@@ -22,15 +22,15 @@
   
  <!-- Hibernate 4 SessionFactory Bean definition -->  
  <beans:bean id="hibernate4AnnotatedSessionFactory"  
-  class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">  
+  class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">  
   <beans:property name="dataSource" ref="dataSource" />  
   <beans:property name="annotatedClasses">  
    <beans:list>  
-    <beans:value>Ingredients</beans:value>  
-    <beans:value>Pate</beans:value>  
-    <beans:value>Pizza</beans:value>  
-    <beans:value>PointDeVentes</beans:value>  
-    <beans:value>Users</beans:value>  
+    <beans:value>common.bean.Ingredients</beans:value>  
+    <beans:value>common.bean.Pate</beans:value>  
+    <beans:value>common.bean.Pizza</beans:value>  
+    <beans:value>common.bean.PointDeVentes</beans:value>  
+    <beans:value>common.bean.Users</beans:value>  
    </beans:list>  
   </beans:property>  
   <beans:property name="hibernateProperties">  
@@ -42,11 +42,11 @@
   </beans:property>  
  </beans:bean>  
  
- <context:component-scan base-package="controller" />
+ <context:component-scan base-package="common" />
  
  <tx:annotation-driven transaction-manager="transactionManager"/>  
    
- <beans:bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">  
+ <beans:bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">  
   <beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />  
  </beans:bean>  
   

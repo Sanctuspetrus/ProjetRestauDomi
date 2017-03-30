@@ -15,10 +15,14 @@ export default {
 	components: {
 		sidebar
 	},
+	ready(){
+		listPizzas.then(yolo => {
+			this.listPizzas
+		})
+	},
 	data () {
-		var listPizzas = []
 		return {
-			listPizzas: listPizzas
+			listPizzas: []
 		}
 	}
 }

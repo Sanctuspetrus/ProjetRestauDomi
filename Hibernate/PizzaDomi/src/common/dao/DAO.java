@@ -1,4 +1,4 @@
-package dao; 
+package common.dao; 
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -12,10 +12,10 @@ import javax.persistence.Persistence;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import bean.Ingredients;
-import bean.Pate;
-import bean.Pizza;
-import bean.Users; 
+import common.bean.Ingredients;
+import common.bean.Pate;
+import common.bean.Pizza;
+import common.bean.Users; 
 
 
 @Service("DAO")

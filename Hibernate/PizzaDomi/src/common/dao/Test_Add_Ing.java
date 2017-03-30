@@ -1,8 +1,8 @@
-package dao; 
+package common.dao; 
  
-import javax.persistence.EntityTransaction; 
- 
-import bean.Ingredients; 
+import javax.persistence.EntityTransaction;
+
+import common.bean.Ingredients; 
  
 public class Test_Add_Ing { 
  

@@ -89,7 +89,7 @@
   </dependency>  
  </dependencies>  
  <build>  
-  <finalName>SpringRestHibernateExample</finalName>  
+  <finalName>PizzaDomi</finalName>  
   
   <plugins>  
    <plugin>  

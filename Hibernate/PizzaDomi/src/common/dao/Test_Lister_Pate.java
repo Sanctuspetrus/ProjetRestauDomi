@@ -1,9 +1,9 @@
-package dao;
+package common.dao;
 
  
 import java.util.List;
 
-import bean.Pate; 
+import common.bean.Pate; 
 
  
 public class Test_Lister_Pate { 

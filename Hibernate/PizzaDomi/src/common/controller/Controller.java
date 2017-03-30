@@ -1,4 +1,4 @@
-package controller;
+package common.controller;
 
 import java.util.Collection;
 import java.util.List;
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import bean.Ingredients;
-import bean.Pizza;
-import bean.Users;
-import dao.DAO;
+import common.bean.Ingredients;
+import common.bean.Pizza;
+import common.bean.Users;
+import common.dao.DAO;
 
 
 @RestController  
@@ -26,6 +26,7 @@ public class Controller {
 	
 	@RequestMapping(value = "/pizzas", method = RequestMethod.GET, headers = "Accept=application/json")  
 	public List<Pizza> getPizzas() {  
+		System.out.println("bite");
 		List<Pizza> listOfPizzas = dao.getPizzas();  
 		return listOfPizzas;  
 	}
@@ -48,7 +49,7 @@ public class Controller {
 		return listOfPizzas;
 	}
 	
-	@RequestMapping(value = "/pizzas", method = RequestMethod.POST, headers = "Accept=application/json")  
+	@RequestMapping(value = "/pizzas", method = RequestMethod.PUT, headers = "Accept=application/json")  
 	public void createPizza(@RequestBody Pizza pizzaToCreate) {  
 		dao.createPizza(pizzaToCreate);
 	}

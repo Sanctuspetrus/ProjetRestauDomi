@@ -24,6 +24,7 @@ const mutations = {
 		state.allCommandes.push(commande)
 	},
 	[types.ANNULER_COMMANDE] (state, {commande}) {
+		console.log(commande)
 		var index = state.allCommandes.findIndex(cmd => cmd.id === commande)
 		if (index !== -1) {
 			state.allCommandes.splice(index, 1)

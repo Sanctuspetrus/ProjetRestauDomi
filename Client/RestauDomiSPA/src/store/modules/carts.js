@@ -21,10 +21,18 @@ const actions = {
 		commit(types.DEL_PIZZA_FROM_CART, {pizza})
 	},
 	commander({ commit }) {
+		var price = 0
+		for (var i = 0; i < state.content.length; i++) {
+			var item = state.content[i]
+			price += item.pizza.price * item.amount
+		}
 		var commande = {
 			id: Math.random().toString(36).substring(7),
-			contenu: state.content
+			contenu: state.content,
+			price: price,
+			destination: 'Chez vous'
 		}
+		console.log(commande)
 		commit(types.NOUVELLE_COMMANDE, {commande})
 		commit(types.VIDER_LE_PANIER)
 	}

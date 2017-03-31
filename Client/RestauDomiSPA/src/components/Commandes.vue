@@ -5,13 +5,31 @@
 			<thead>
 				<tr>
 					<th>Pizzas</th>
-					<th>Quantité</th>
 					<th>Prix</th>
 					<th>Destination</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="commandes in allCommandes">
+				<tr v-for="commande in allCommandes">
+					<td>
+						<ul>
+							<li v-for="item in commande.contenu">
+								{{item.pizza.name}}({{item.amount}})
+							</li>
+						</ul>
+					</td>
+					<td>
+						{{commande.price}} €
+					</td>
+					<td>
+						{{commande.destination}}
+					</td>
+					<td>
+						<button type="button" class="btn btn-default btn-xs"  @click="deleteCommande(commande)">
+							<icon name="times-circle"></icon>
+						</button>
+					</td>
 				</tr>
 			</tbody>
 		</table>
@@ -31,7 +49,23 @@ export default {
 		return {
 		}
 	},
+	methods: {
+		deleteCommande (commande) {
+			this.annulerCommande(commande.id)
+			this.$toasted.error('Commande annulée', {duration: 1000})
+		},
+		...mapActions([
+			'annulerCommande'
+		])
+	},
 	computed: {
+		totalPrice() {
+			var total = 0
+			for (var i = 0; i < this.allCommandes.length; i++) {
+				total += this.allCommandes[i].price
+			}
+			return total
+		},
 		...mapGetters([
 			'allCommandes'
 		])

@@ -7,6 +7,7 @@ import * as getters from 'store/getters'
 import account from 'store/modules/account'
 import pizzas from 'store/modules/pizzas'
 import carts from 'store/modules/carts'
+import commandes from 'store/modules/commandes'
 import error from 'store/modules/error'
 
 Vue.use(Vuex)
@@ -18,6 +19,7 @@ export default new Vuex.Store({
 		account,
 		pizzas,
 		carts,
+		commandes,
 		error
 	},
 	mutations: {

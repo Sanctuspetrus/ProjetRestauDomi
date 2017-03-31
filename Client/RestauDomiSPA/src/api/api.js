@@ -1,6 +1,5 @@
 import Vue from 'vue'
-const DOMAIN = 'http://localhot:8000'
-
+const DOMAIN = 'http://localhost:8080/SpringRestHibernateExample/rest/controller/'
 export default {
 	/**
 	* @return {Promise} réponse du serveur

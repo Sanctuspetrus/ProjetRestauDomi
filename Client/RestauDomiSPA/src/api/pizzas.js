@@ -1,3 +1,5 @@
+import api from './api'
+
 const _listPizzas = [
 	{
 		id: 1,
@@ -30,7 +32,22 @@ const _listPizzas = [
 */
 export default {
 	getPizzas (resolve) {
-		setTimeout(() => resolve(_listPizzas), 100)
+		// setTimeout(() => resolve(_listPizzas), 100)
+		api.index('pizzas').then(response => {
+			var pizzas = response.data.pizzaDomi.map(data => {
+				return {
+					id: data.id,
+					name: data.nom,
+					price: 10,
+					ingredients: data.ings,
+					favoris: data.favUsers,
+					dough: 1,
+					autor: 'Pizza Yolo'
+				}
+			})
+
+			resolve(pizzas)
+		})
 	},
 	savePizza(pizza, resolve, reject) {
 		setTimeout(() => resolve(pizza), 100)

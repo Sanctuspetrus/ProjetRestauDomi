@@ -14,15 +14,13 @@ import common.bean.Pizza;
 import common.bean.Users; 
 
 public class DAO { 
+
+	EntityManagerFactory emf = null; 
+	EntityManager em = null; 
 	
-	 @Autowired
-	 private SessionFactory sessionFactory;
-	 
-	 
-	 public void setSessionFactory(SessionFactory sf) {
-		 this.sessionFactory = sf;
-	 }
-	 
+	public DAO(){
+		
+	}
 
 	public void ouvrir() { 
 		try { 
@@ -48,8 +46,11 @@ public class DAO {
 	
 	public void enregistrerIngredient(Ingredients ing) { 
 
-		  Session session = this.sessionFactory.getCurrentSession();
-		  session.persist(ing);
+
+    	EntityTransaction tx = this.em.getTransaction(); 
+    	tx.begin(); 
+		em.persist(ing); 
+		tx.commit();
 
 	} 
 
@@ -61,45 +62,48 @@ public class DAO {
 
 	
 	public Ingredients getIngredientsById(Integer id){
-		Session session = this.sessionFactory.getCurrentSession();
-		Ingredients ing = (Ingredients) session.load(Ingredients.class, new Integer(id));
+		List<Ingredients> lst = em.createQuery("select i from Ingredients i where id="+id.intValue()).getResultList();
+		if(lst.isEmpty())
+			return null;
 
-		return ing;
+		return lst.get(0);
 	}
 
 	
 	public void enregistrerPate(Pate pate) { 
 
 
-
-		  Session session = this.sessionFactory.getCurrentSession();
-		  session.persist(pate);
+    	EntityTransaction tx = this.em.getTransaction(); 
+    	tx.begin(); 
+		em.persist(pate); 
+		tx.commit();
 
 	} 
 
 	
 	public List<Pate> listerPates() { 
-		Session session = this.sessionFactory.getCurrentSession();
-		List<Pate> lst = session.createQuery("from Pate").getResultList();
+		List <Pate> lst = em.createQuery("select p from Pate p").getResultList(); 
 		return lst; 
 	} 
 
 	
 	public void createPizza(Pizza piz) {
 
-		  Session session = this.sessionFactory.getCurrentSession();
-		  session.persist(piz);
+    	EntityTransaction tx = this.em.getTransaction(); 
+    	tx.begin(); 
+		em.persist(piz); 
+		tx.commit();
 
 	} 
 
 	
 	public void deletePizza(Integer id){
-		 Session session = this.sessionFactory.getCurrentSession();
-		 Pizza p = (Pizza) session.load(Pizza.class, new Integer(id));
-		 if (null != p) {
-			 session.delete(p);
-		}
-		 
+		Pizza prod = getPizzaById(id);
+
+    	EntityTransaction tx = this.em.getTransaction(); 
+    	tx.begin(); 
+		em.remove(prod);
+		tx.commit();
 	}
 
 	
@@ -108,7 +112,7 @@ public class DAO {
 		String queryString = "select p from Pizza p where ";
 		String query2 = "select p from Pizza p where :numberOfIngredients = (select count(distinct ing.id) from"
 				+ " Pizza p2 inner join p2.ingredients ing where b2.id = p.id and ing IN (:whiteList))";
-		int index = 1;
+		/*int index = 1;
 		for(Ingredients in : whiteList){
 			queryString += "p.ingredients=:in ";
 			if(index != whiteList.size()){
@@ -128,7 +132,7 @@ public class DAO {
 				queryString += " and ";
 			}
 			index++;
-		}
+		}*/
 		
 		System.out.println(query2);
 		List <Pizza> lst = em.createQuery(query2).getResultList(); 
@@ -138,17 +142,17 @@ public class DAO {
 
 	
 	public List<Pizza> getPizzas() { 
-		Session session = this.sessionFactory.getCurrentSession();
-		List<Pizza> lst = session.createQuery("from Pizza").getResultList();
+		List <Pizza> lst = em.createQuery("select p from Pizza p").getResultList(); 
 		return lst; 
 	} 
 	
 	
 	public Pizza getPizzaById(Integer id){
-		Session session = this.sessionFactory.getCurrentSession();
-		Pizza piz = (Pizza) session.load(Pizza.class, new Integer(id));
+		List<Pizza> piz = em.createQuery("select p from produit p where id="+id.intValue()).getResultList();
+		if(piz.isEmpty())
+			return null;
 
-		return piz;
+		return piz.get(0);
 	}
 	
 	
@@ -160,8 +164,10 @@ public class DAO {
 	
 	public void createUser(Users usr) { 
 
-		  Session session = this.sessionFactory.getCurrentSession();
-		  session.persist(usr);
+    	EntityTransaction tx = this.em.getTransaction(); 
+    	tx.begin(); 
+		em.persist(usr); 
+		tx.commit();
 
 	} 
 	
@@ -180,16 +186,17 @@ public class DAO {
 
 	
 	public List<Users> listerUser() { 
-		Session session = this.sessionFactory.getCurrentSession();
-		List<Users> lst = session.createQuery("from Users").getResultList();
+		List <Users> lst = em.createQuery("select p from Users p").getResultList(); 
 		return lst; 
 	} 
 	
 	
 	public Users getUser(Integer id){
-		Session session = this.sessionFactory.getCurrentSession();
-		Users usr = (Users) session.load(Users.class, new Integer(id));
-		return usr;
+		List<Users> usr = em.createQuery("select p from Users p where id="+id.intValue()).getResultList();
+		if(usr.isEmpty())
+			return null;
+
+		return usr.get(0);
 	}
 	
 	
@@ -200,9 +207,8 @@ public class DAO {
 	
 	
 	public String connexionUser(String nom, String mdp ){
-		Session session = this.sessionFactory.getCurrentSession();
-		List<Users> lst = session.createQuery("select p from Users p where nom="+nom+" and motDePasse="+mdp).getResultList();
-		if(lst.isEmpty())
+		List<Users> usr = em.createQuery("select p from Users p where nom="+nom+" and motDePasse="+mdp).getResultList();
+		if(usr.isEmpty())
 			return null;
 		return (Math.random()*1000)+"";
 	}

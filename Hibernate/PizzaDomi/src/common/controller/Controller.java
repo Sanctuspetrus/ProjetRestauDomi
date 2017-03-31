@@ -31,7 +31,7 @@ public class Controller {
 		List<Pizza> listOfPizzas = dao.getPizzas();
 		String res = Tools.lstPizzToJson(listOfPizzas);
 		dao.fermer();
-		return Response.ok(res).build();  
+		return Response.ok(res).header("Access-Allow-Control-Origine", "*").build();  
 	}
 	
 	@GET

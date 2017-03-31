@@ -100,10 +100,11 @@ export default {
         this.setPrice(this.totalPrice)
         this.setDough(this.selectedPate)
         for (var i = 0; i < this.selectedIngredients.length; i++) {
-          this.addIngredient(this.selectedIngredients[i])
+          console.log(this.selectedIngredients[i])
+          this.addIngredient(this.selectedIngredients[i].id)
         }
         this.addPizza()
-        if (this.error.description === 'cette pizza existe déjà') {
+        if (this.error !== null && this.error.description === 'cette pizza existe déjà') {
           this.$toasted.error('Ce nom existe déjà.', {duration: 1000})
         } else {
           this.$toasted.success(this.pizzaName + ' ajoutée au panier.', {duration: 1000})

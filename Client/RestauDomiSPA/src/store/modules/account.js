@@ -1,16 +1,25 @@
 import membres from 'api/membres'
-import ingredients from 'api/ingredients'
 import * as types from 'store/mutations'
 
 // initial state
 // shape: [{ id, quantity }]
 const state = {
-	allMembres: []
+	allMembres: [],
+	currentMembre: {
+		id: -1,
+		login: 'jeanpeuplu',
+		password: '1234',
+		firstname: 'Jean',
+		lastname: 'Peuplu',
+		pizzas: [],
+		favoris: []
+	}
 }
 
 // getters
 const getters = {
-	allMembres: state => state.allPizzas
+	allMembres: state => state.allMembres,
+	currentMembre: state => state.currentMembre
 }
 
 // actions
@@ -18,6 +27,17 @@ const actions = {
 	getAllMembres ({ commit }) {
 		membres.getMembres(membres => {
 			commit(types.RECEIVE_MEMBRES, { membres })
+		})
+	},
+	connection({commit}, login, pwd) {
+		return new Promise((resolve, reject) => {
+			var membre = membres.connection(login, pwd).then(response => {
+				commit(types.CONNECTED, membre)
+				resolve()
+			}, this).catch(error => {
+				console.error(error)
+				reject()
+			})
 		})
 	},
 	addPizzaToMembre({ commit }, idPizza, idMembre) {
@@ -31,7 +51,20 @@ const actions = {
 	},
 	removeFavoriFromMembre({ commit }, idPizza, idMembre) {
 		commit(types.REMOVE_FAVORI_FROM_MEMBRE, {idPizza, idMembre})
+	},
+	setNewMembreLogin({commit}, login) {
+		commit(types.SET_NEW_MEMBRE_LOGIN, {login})
+	},
+	setNewMembrePassword({commit}, pwd) {
+		commit(types.SET_NEW_MEMBRE_PASSWORD, {pwd})
+	},
+	setNewMembreFirstName({commit}, first) {
+		commit(types.SET_NEW_MEMBRE_FIRST_NAME, {first})
+	},
+	setNewMembreLastName({commit}, last) {
+		commit(types.SET_NEW_MEMBRE_LAST_NAME, {last})
 	}
+
 }
 
 // mutations
@@ -60,6 +93,18 @@ const mutations = {
 		if (index !== -1) {
 			membre.favoris.splice(index, 1)
 		}
+	},
+	[types.SET_NEW_MEMBRE_LOGIN] (state, {login}) {
+		state.currentMembre.login = login
+	},
+	[types.SET_NEW_MEMBRE_PASSWORD] (state, {pwd}) {
+		state.currentMembre.password = pwd
+	},
+	[types.SET_NEW_MEMBRE_FIRST_NAME] (state, {first}) {
+		state.currentMembre.firstname = first
+	},
+	[types.SET_NEW_MEMBRE_LAST_NAME] (state, {last}) {
+		state.currentMembre.lastname = last
 	}
 }
 

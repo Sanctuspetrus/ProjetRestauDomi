@@ -42,5 +42,15 @@ export default {
 	},
 	deleteMembre(id, resolve, reject) {
 		setTimeout(() => resolve(true), 100)
+	},
+	connection(login, pwd) {
+		return new Promise((resolve, reject) => {
+			var membre = _listMembres.find(membre => (membre.login === login && membre.password === pwd))
+			if (membre !== undefined) {
+				setTimeout(() => resolve(membre), 100)
+			} else {
+				setTimeout(() => reject({description: 'utilisateur inconnu'}), 100)
+			}
+		})
 	}
 }

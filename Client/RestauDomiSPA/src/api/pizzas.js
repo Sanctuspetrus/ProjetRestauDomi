@@ -1,5 +1,6 @@
 const _listPizzas = [
 	{
+		id: 1,
 		name: 'Chorizo',
 		price: 11,
 		ingredients: [ 1, 2, 3, 4, 5 ],
@@ -8,6 +9,7 @@ const _listPizzas = [
 		favoris: []
 	},
 	{
+		id: 2,
 		name: 'Margarita',
 		price: 10,
 		ingredients: [1, 4],
@@ -15,6 +17,7 @@ const _listPizzas = [
 		autor: 'Pizza Yolo'
 	},
 	{
+		id: 3,
 		name: 'Tartiflette',
 		price: 12,
 		ingredients: [ 6, 7, 8, 10 ],

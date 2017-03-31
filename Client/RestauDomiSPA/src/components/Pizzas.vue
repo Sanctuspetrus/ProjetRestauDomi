@@ -1,7 +1,7 @@
 <template>
 	<div class="pizzas">
-		<ul>
-			<li v-for="pizza in listPizzas">
+		<div class="row">
+			<div class="col-sm-4" v-for="pizza in listPizzas">
 				<pizza-carte
 				:name="pizza.name"
 				:price="pizza.price"
@@ -9,30 +9,9 @@
 				:dough="pizza.dough"
 				:autor="pizza.autor"
 				></pizza-carte>
-			</li>
-		</ul>
-		Ingredient:
-		<select v-model="ingredientName">
-			<option v-for="ing in allIngredients" :value="ing.id">{{ing.name}}</option>
-		</select>
-		<button @click="addIngredient(ingredientName)">Ajouter</button>
-		<ul>
-			<li v-for="ing in ingPizza">{{ing}}</li>
-		</ul>
-
-
-
-		<div class="row">
-			<div class="col-sm-4" v-for="pizza in allPizzas">
-				<div class="panel panel-default btn-default" @click="addPizzaToCart(pizza), popUp()">
-					<div class="panel-heading" style="font-weight:bold; font-size:18px">{{pizza.name}}</div>
-					<div class="panel-body">
-						<p>{{pizza.price}}€</p>
-					</div>
-				</div>
+				<button @click="clickToAddPizza(pizza)">Ajouter au panier</button>
 			</div>
 		</div>
-		<button @click="toast">Toast</button>
 
 	</div>
 
@@ -56,6 +35,10 @@ export default {
 		toast () {
 			this.$toasted.info("I'm toasted!", {duration: 500})
 		},
+		clickToAddPizza(pizza) {
+			this.addPizzaToCart(pizza)
+			this.$toasted.success(pizza.name + ' ajoutée au panier.', {duration: 1000})
+		},
 		findIngredientById(id) {
 			return this.allIngredients.find(ing => ing.id === id)
 		},
@@ -63,11 +46,13 @@ export default {
 			return this.allDoughs.find(dough => dough.id === id)
 		},
 		...mapActions([
-			'addIngredient'
+			'addIngredient',
+			'addPizzaToCart'
 		])
 	},
 	computed: {
 		listPizzas () {
+			// Remplace les id par les ingredients (et pâtes) correspondants
 			return this.allPizzas.map(pizza => {
 				var ingredients = []
 				var dough = { name: '', price: 0 }
@@ -81,9 +66,10 @@ export default {
 				if (d !== undefined) {
 					dough = d
 				}
-				pizza.ingredients = ingredients
-				pizza.dough = dough
-				return pizza
+				var res = JSON.parse(JSON.stringify(pizza))
+				res.ingredients = ingredients
+				res.dough = dough
+				return res
 			})
 		},
 		...mapGetters([

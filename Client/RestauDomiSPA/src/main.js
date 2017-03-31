@@ -5,10 +5,13 @@ import App from 'src/App'
 import router from 'src/router'
 import store from 'src/store'
 import Toasted from 'vue-toasted'
-/* eslint-disable no-new */
+import 'vue-awesome/icons'
+import Icon from 'vue-awesome/components/Icon.vue'
 
+Vue.component('icon', Icon)
 Vue.use(Toasted)
 
+/* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,

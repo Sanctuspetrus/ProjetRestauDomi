@@ -1,20 +1,24 @@
 <template>
 	<div class="pizza">
-		<h1>{{name}}</h1>
-		<p>{{price}}€</p>
-		Ingrédients:
-		<ul>
-			<li v-for="ing in listIngredients">{{ing.name}}</li>
-		</ul>
-		<!-- <p>Pâte: {{dough}}</p> -->
-		<p>Auteur: {{autor}}</p>
+		<div class="panel panel-default btn-default">
+			<div class="panel-heading" style="font-weight:bold; font-size:18px">{{name}}</div>
+			<div class="panel-body">
+				<p>{{price}}€</p>
+				Ingrédients:
+				<ul>
+					<li v-for="ing in listIngredients">{{ing.name}}</li>
+				</ul>
+				<p>Pâte: {{dough.name}}</p>
+				<p>Auteur: {{autor}}</p>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
 
 export default {
-	name: 'pizza',
+	name: 'pizzaCarte',
 	props: {
 		name: String,
 		price: Number,
@@ -30,7 +34,6 @@ export default {
 	},
 	computed: {
 		listIngredients () {
-			console.log(this.ingredients)
 			return this.ingredients
 		}
 	}

@@ -148,7 +148,7 @@ public class DAO {
 	
 	
 	public Pizza getPizzaById(Integer id){
-		List<Pizza> piz = em.createQuery("select p from produit p where id="+id.intValue()).getResultList();
+		List<Pizza> piz = em.createQuery("select p from Pizza p where id="+id.intValue()).getResultList();
 		if(piz.isEmpty())
 			return null;
 

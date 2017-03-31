@@ -1,10 +1,11 @@
 package common.controller;
 
-import java.util.Iterator;
 import java.util.List;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
 import common.bean.Ingredients;
@@ -26,26 +27,47 @@ public class Controller {
 	@GET
 	@Path("/pizzas")
 	public Response getPizzas() {  
-		System.out.println("bite");
 		dao.ouvrir();
 		List<Pizza> listOfPizzas = dao.getPizzas();
 		String res = Tools.lstPizzToJson(listOfPizzas);
 		dao.fermer();
 		return Response.ok(res).build();  
 	}
+	
+	@GET
+	@Path("/pizzas/{id}")
+	public Response getPizzaById(@PathParam("id") Integer id) {  
+		dao.ouvrir();
+		Pizza pizza = dao.getPizzaById(id);
+		String res = "l'id donné ne correspond à aucune pizza";
+		if(pizza != null){
+			res = Tools.pizToJSON(pizza);
+		}else{
+			dao.fermer();
+			return Response.serverError().build();
+		}
+		dao.fermer();
+		return Response.ok(res).build(); 
+	}
+
+	@GET
+	@Path("/pizzas/{id}/favoris")
+	public Response getUserByIdPizza(@PathParam("id") Integer id) {  
+		dao.ouvrir();
+		List<Users> listOfUsers = (List<Users>) dao.getUserByIdPizza(id); 
+
+		String res = "l'id donné ne correspond à aucune pizza";
+		if(listOfUsers != null){
+			res = Tools.lstUserToJSON(listOfUsers);
+		}else{
+			dao.fermer();
+			return Response.serverError().build();
+		}
+		dao.fermer();
+		return Response.ok(res).build();
+	}
+
 	/*
-	@RequestMapping(value = "/pizzas/{id}", method = RequestMethod.GET, headers = "Accept=application/json")  
-	public Pizza getPizzaById(@PathVariable Integer id) {  
-		Pizza pizza = dao.getPizzaById(id); 
-		return pizza;
-	}
-	
-	@RequestMapping(value = "/pizzas/{id}/favoris", method = RequestMethod.GET, headers = "Accept=application/json")  
-	public Collection<Users> getUserByIdPizza(@PathVariable Integer id) {  
-		Collection<Users> listOfUsers = dao.getUserByIdPizza(id); 
-		return listOfUsers;
-	}
-	
 	@RequestMapping(value = "/pizzas", method = RequestMethod.POST, headers = "Accept=application/json")  
 	public List<Pizza> getPizzasByIngredients(@RequestBody List<Ingredients> listeNoire, List<Ingredients> listeBlanche) {  
 		List<Pizza> listOfPizzas = dao.getPizzasByIngredients(listeNoire, listeBlanche); 
@@ -62,12 +84,16 @@ public class Controller {
 		dao.createPizza(pizza);  
 	}
 	
-	@RequestMapping(value = "/pizzas/{id}", method = RequestMethod.DELETE, headers = "Accept=application/json")  
-	public void deletePizza(@PathVariable("id") int id) {  
-		dao.deletePizza(id);    
-	}  
-	
 	*/
+	@DELETE
+	@Path("/pizzas/{id}") 
+	public Response deletePizza(@PathParam("id") int id) {  
+		dao.ouvrir();
+		dao.deletePizza(id);    
+		dao.fermer();
+		return Response.ok().build();
+	}  
+
 	//******************************************INGREDIENTS**************************************************
 
 	@GET
@@ -79,14 +105,25 @@ public class Controller {
 		dao.fermer();
 		return Response.ok(res).build();  
 	}
-	/*
-	@RequestMapping(value = "/ingredients/{id}", method = RequestMethod.GET, headers = "Accept=application/json")  
-	public Ingredients getIngredientsById(@PathVariable Integer id) {  
+	
+	@GET
+	@Path("/ingredients/{id}")  
+	public Response getIngredientsById(@PathParam("id") Integer id) {  
+		dao.ouvrir();
 		Ingredients ingredient = dao.getIngredientsById(id); 
-		return ingredient;
+
+		String res = "l'id donné ne correspond à aucune pizza";
+		if(ingredient != null){
+			res = Tools.IngToJson(ingredient);
+		}else{
+			dao.fermer();
+			return Response.serverError().build();
+		}
+		dao.fermer();
+		return Response.ok(res).build();
 		
 	}
-	
+	/*
 	//*********************************************MEMBRES*****************************************************
 	
 	@RequestMapping(value = "/connexion", method = RequestMethod.POST, headers = "Accept=application/json")  
@@ -104,19 +141,40 @@ public class Controller {
 		return dao.updateUser(user);
 	}
 	
-	@RequestMapping(value = "/compte", method = RequestMethod.GET, headers = "Accept=application/json")  
-	public Users getUser(@PathVariable Integer id) {  
-		Users user = dao.getUser(id); 
-		return user;
-	}
-	
-	@RequestMapping(value = "/user/{id}/favoris", method = RequestMethod.GET, headers = "Accept=application/json")  
-	public Collection<Pizza> getUsersFavPizzas(@PathVariable Integer id) {  
-		Collection<Pizza> listOfPizzas = dao.getUsersFavPizzas(id); 
-		return listOfPizzas;
-	}
-	
-	
 	   */
+	@GET
+	@Path("/compte/{id}")  
+	public Response getUser(@PathParam("id") Integer id) {  
+		dao.ouvrir();
+		Users user = dao.getUser(id); 
+
+		String res = "l'id donné ne correspond à aucune pizza";
+		if(user != null){ 
+			res = Tools.UsrToJson(user);
+		}else{
+			dao.fermer();
+			return Response.serverError().build();
+		}
+		dao.fermer();
+		return Response.ok(res).build();
+	}
+	
+
+	@GET
+	@Path("/user/{id}/favoris")
+	public Response getUsersFavPizzas(@PathParam("id") Integer id) {  
+		dao.ouvrir();
+		List<Pizza> listOfPizzas = (List<Pizza>) dao.getUsersFavPizzas(id); 
+
+		String res = "l'id donné ne correspond à aucun utilisateur";
+		if(listOfPizzas != null){
+			res = Tools.lstPizzToJson(listOfPizzas);
+		}else{
+			dao.fermer();
+			return Response.serverError().build();
+		}
+		dao.fermer();
+		return Response.ok(res).build();
+	}
 }  
 

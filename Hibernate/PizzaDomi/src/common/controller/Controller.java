@@ -31,7 +31,7 @@ public class Controller {
 		List<Pizza> listOfPizzas = dao.getPizzas();
 		String res = Tools.lstPizzToJson(listOfPizzas);
 		dao.fermer();
-		return Response.ok(res).header("Access-Allow-Control-Origine", "*").build();  
+		return Response.ok(res).header("Access-Control-Allow-Origin", "*").build();  
 	}
 	
 	@GET
@@ -47,7 +47,7 @@ public class Controller {
 			return Response.serverError().build();
 		}
 		dao.fermer();
-		return Response.ok(res).header("Access-Allow-Control-Origine", "*").build(); 
+		return Response.ok(res).header("Access-Control-Allow-Origin", "*").build(); 
 	}
 
 	@GET
@@ -64,7 +64,7 @@ public class Controller {
 			return Response.serverError().build();
 		}
 		dao.fermer();
-		return Response.ok(res).header("Access-Allow-Control-Origine", "*").build();
+		return Response.ok(res).header("Access-Control-Allow-Origin", "*").build();
 	}
 
 	/*
@@ -91,7 +91,7 @@ public class Controller {
 		dao.ouvrir();
 		dao.deletePizza(id);    
 		dao.fermer();
-		return Response.ok().header("Access-Allow-Control-Origine", "*").build();
+		return Response.ok().header("Access-Control-Allow-Origin", "*").build();
 	}  
 
 	//******************************************INGREDIENTS**************************************************
@@ -103,7 +103,7 @@ public class Controller {
 		List<Ingredients> listOfIngredients = dao.getIngredients();  
 		String res = Tools.listIngToJson(listOfIngredients);
 		dao.fermer();
-		return Response.ok(res).header("Access-Allow-Control-Origine", "*").build();  
+		return Response.ok(res).header("Access-Control-Allow-Origin", "*").build();  
 	}
 	
 	@GET
@@ -120,7 +120,7 @@ public class Controller {
 			return Response.serverError().build();
 		}
 		dao.fermer();
-		return Response.ok(res).header("Access-Allow-Control-Origine", "*").build();
+		return Response.ok(res).header("Access-Control-Allow-Origin", "*").build();
 		
 	}
 	/*
@@ -156,7 +156,7 @@ public class Controller {
 			return Response.serverError().build();
 		}
 		dao.fermer();
-		return Response.ok(res).header("Access-Allow-Control-Origine", "*").build();
+		return Response.ok(res).header("Access-Control-Allow-Origin", "*").build();
 	}
 	
 
@@ -174,7 +174,7 @@ public class Controller {
 			return Response.serverError().build();
 		}
 		dao.fermer();
-		return Response.ok(res).header("Access-Allow-Control-Origine", "*").build();
+		return Response.ok(res).header("Access-Control-Allow-Origin", "*").build();
 	}
 }  
 

@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from 'src/App'
 import router from 'src/router'
 import store from 'src/store'
+import resources from 'src/resources'
 import Toasted from 'vue-toasted'
 import 'vue-awesome/icons'
 import Icon from 'vue-awesome/components/Icon.vue'
@@ -15,9 +16,10 @@ Vue.component('v-select', vSelect)
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  router,
-  store,
-  template: '<App/>',
-  components: { App }
+	el: '#app',
+	router,
+	store,
+	resources,
+	template: '<App/>',
+	components: { App }
 })

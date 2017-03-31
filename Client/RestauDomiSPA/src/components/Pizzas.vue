@@ -1,7 +1,7 @@
 <template>
 	<div class="pizzas">
 		<div class="jumbotron text-center">
-			<h1>Choisissez vos pizzas</h1>
+			<h1>Faites votre choix</h1>
 		</div>
 		<div class="row">
 			<div class="col-sm-4" v-for="pizza in listPizzas">

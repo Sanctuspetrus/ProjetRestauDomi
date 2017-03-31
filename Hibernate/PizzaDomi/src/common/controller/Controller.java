@@ -47,7 +47,7 @@ public class Controller {
 			return Response.serverError().build();
 		}
 		dao.fermer();
-		return Response.ok(res).build(); 
+		return Response.ok(res).header("Access-Allow-Control-Origine", "*").build(); 
 	}
 
 	@GET
@@ -64,7 +64,7 @@ public class Controller {
 			return Response.serverError().build();
 		}
 		dao.fermer();
-		return Response.ok(res).build();
+		return Response.ok(res).header("Access-Allow-Control-Origine", "*").build();
 	}
 
 	/*
@@ -91,7 +91,7 @@ public class Controller {
 		dao.ouvrir();
 		dao.deletePizza(id);    
 		dao.fermer();
-		return Response.ok().build();
+		return Response.ok().header("Access-Allow-Control-Origine", "*").build();
 	}  
 
 	//******************************************INGREDIENTS**************************************************
@@ -103,7 +103,7 @@ public class Controller {
 		List<Ingredients> listOfIngredients = dao.getIngredients();  
 		String res = Tools.listIngToJson(listOfIngredients);
 		dao.fermer();
-		return Response.ok(res).build();  
+		return Response.ok(res).header("Access-Allow-Control-Origine", "*").build();  
 	}
 	
 	@GET
@@ -120,7 +120,7 @@ public class Controller {
 			return Response.serverError().build();
 		}
 		dao.fermer();
-		return Response.ok(res).build();
+		return Response.ok(res).header("Access-Allow-Control-Origine", "*").build();
 		
 	}
 	/*
@@ -156,7 +156,7 @@ public class Controller {
 			return Response.serverError().build();
 		}
 		dao.fermer();
-		return Response.ok(res).build();
+		return Response.ok(res).header("Access-Allow-Control-Origine", "*").build();
 	}
 	
 
@@ -174,7 +174,7 @@ public class Controller {
 			return Response.serverError().build();
 		}
 		dao.fermer();
-		return Response.ok(res).build();
+		return Response.ok(res).header("Access-Allow-Control-Origine", "*").build();
 	}
 }  
 

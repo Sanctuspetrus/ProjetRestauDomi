@@ -15,6 +15,16 @@
           <div class="col-sm-4">
             <div class="panel panel-default">
               <p>Nom de la pizza: <input type="text" name="" v-model="pizzaName"></p>
+              <div class="dropdown">
+                Pâte : <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{pateName}}
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li v-for="dough in allDoughs">  </li>
+                </ul>
+              </div>
+              Ingrédients :
+              
             </div>
           </div>
         </div>
@@ -31,6 +41,7 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'creationPizza',
   created () {
+    this.$store.dispatch('getAllPizzas')
   },
   components: {
   },
@@ -39,24 +50,21 @@ export default {
   computed: {
 
     ...mapGetters([
-      'allPizzas',
-      'cartContent'
+      'allIngredients',
+      'allDoughs'
     ])
   },
   data() {
     return {
-      pizzaName: ''
+      pizzaName: '',
+      pateName: 'choisissez votre pâte'
     }
   },
   watch: {
   },
   methods: {
-    paiement() {
-      alert('Payé !')
-    },
     ...mapActions([
-      'addPizzaToCart',
-      'delPizzaFromCart'
+
     ])
   }
 }

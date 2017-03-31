@@ -44,6 +44,14 @@ const actions = {
 			commit(types.SET_ERROR, {error})
 		}
 	},
+	addPizza({ commit }) {
+		if (state.allPizzas.find(piz => piz.name === state.newPizza.name) === undefined) {
+			commit(types.ADD_PIZZA)
+		} else {
+			var error = { decription: 'cette pizza existe déjà' }
+			commit(types.SET_ERROR, {error})
+		}
+	},
 	setName({ commit }, name) {
 		commit(types.SET_NEW_PIZZA_NAME, {name})
 	},
@@ -68,6 +76,9 @@ const mutations = {
 	},
 	[types.ADD_INGREDIENT] (state, {ingredient}) {
 		state.newPizza.ingredients.push(ingredient)
+	},
+	[types.ADD_PIZZA] (state) {
+		state.allPizzas.push(state.newPizza)
 	},
 	[types.SET_NEW_PIZZA_NAME] (state, {name}) {
 		state.newPizza.name = name

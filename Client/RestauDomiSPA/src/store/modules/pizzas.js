@@ -79,6 +79,12 @@ const mutations = {
 	},
 	[types.ADD_PIZZA] (state) {
 		state.allPizzas.push(state.newPizza)
+		state.newPizza = {
+			name: '',
+			price: 0,
+			ingredients: [],
+			dough: 1
+		}
 	},
 	[types.SET_NEW_PIZZA_NAME] (state, {name}) {
 		state.newPizza.name = name

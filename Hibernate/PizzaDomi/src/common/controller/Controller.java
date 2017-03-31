@@ -11,6 +11,7 @@ import common.bean.Ingredients;
 import common.bean.Pizza;
 import common.bean.Users;
 import common.dao.DAO;
+import common.tools.Tools;
 
 
 @Path ("/controller") 
@@ -28,53 +29,9 @@ public class Controller {
 		System.out.println("bite");
 		dao.ouvrir();
 		List<Pizza> listOfPizzas = dao.getPizzas();
-		String json = "{\"pizzaDomi\":[\n";
-		int i = 0;
-		for (Pizza piz : listOfPizzas) {
-			json += "\t{\n";
-			json += "\t\"id\":"+piz.getId()+",\n";
-			json += "\t\"nom\":\""+piz.getNom()+"\",\n";
-			json += "\t\"favUsers\":[\n";
-			int j = 0;
-			for (Users usr : piz.getUsers()) {
-				json += "\t\t"+usr.getId();
-				if(j < piz.getUsers().size()-1){
-
-					json += ",\n";
-				}
-				else{
-					json += "\n";
-				}
-				j++;
-			}
-			json += "\t],\n";
-			json += "\t\"ings\":[\n";
-			j = 0;
-			for (Ingredients ing : piz.getIngredients()) {
-				json += "\t\t"+ing.getId();
-				if(j < piz.getIngredients().size()-1){
-
-					json += ",\n";
-				}else{
-					json += "\n";
-				}
-				j++;
-			}
-			json += "\t]\n";
-
-			json += "}\n";
-			if(i < listOfPizzas.size()-1){
-
-				json += ",\n";
-			}
-			else{
-				json += "\n";
-			}
-			i++;
-		}
-		json += "]}";
+		String res = Tools.lstPizzToJson(listOfPizzas);
 		dao.fermer();
-		return Response.ok(json).build();  
+		return Response.ok(res).build();  
 	}
 	/*
 	@RequestMapping(value = "/pizzas/{id}", method = RequestMethod.GET, headers = "Accept=application/json")  
@@ -88,13 +45,13 @@ public class Controller {
 		Collection<Users> listOfUsers = dao.getUserByIdPizza(id); 
 		return listOfUsers;
 	}
-	/*
+	
 	@RequestMapping(value = "/pizzas", method = RequestMethod.POST, headers = "Accept=application/json")  
 	public List<Pizza> getPizzasByIngredients(@RequestBody List<Ingredients> listeNoire, List<Ingredients> listeBlanche) {  
 		List<Pizza> listOfPizzas = dao.getPizzasByIngredients(listeNoire, listeBlanche); 
 		return listOfPizzas;
 	}
-	*/
+	
 	@RequestMapping(value = "/pizzas", method = RequestMethod.PUT, headers = "Accept=application/json")  
 	public void createPizza(@RequestBody Pizza pizzaToCreate) {  
 		dao.createPizza(pizzaToCreate);
@@ -110,15 +67,19 @@ public class Controller {
 		dao.deletePizza(id);    
 	}  
 	
-	
+	*/
 	//******************************************INGREDIENTS**************************************************
 
-	@RequestMapping(value = "/ingredients", method = RequestMethod.GET, headers = "Accept=application/json")  
-	public List<Ingredients> getIngredients() {  
+	@GET
+	@Path("/ingredients")  
+	public Response getIngredients() {  
+		dao.ouvrir();
 		List<Ingredients> listOfIngredients = dao.getIngredients();  
-		return listOfIngredients;  
+		String res = Tools.listIngToJson(listOfIngredients);
+		dao.fermer();
+		return Response.ok(res).build();  
 	}
-	
+	/*
 	@RequestMapping(value = "/ingredients/{id}", method = RequestMethod.GET, headers = "Accept=application/json")  
 	public Ingredients getIngredientsById(@PathVariable Integer id) {  
 		Ingredients ingredient = dao.getIngredientsById(id); 

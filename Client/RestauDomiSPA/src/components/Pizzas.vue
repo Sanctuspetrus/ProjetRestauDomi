@@ -1,5 +1,8 @@
 <template>
 	<div class="pizzas">
+		<div class="jumbotron text-center">
+			<h1>Choisissez vos pizzas</h1>
+		</div>
 		<div class="row">
 			<div class="col-sm-4" v-for="pizza in listPizzas">
 				<pizza-carte
@@ -8,8 +11,8 @@
 				:ingredients="pizza.ingredients"
 				:dough="pizza.dough"
 				:autor="pizza.autor"
+				@addToCart="clickToAddPizza(pizza)"
 				></pizza-carte>
-				<button @click="clickToAddPizza(pizza)">Ajouter au panier <icon name="cart-plus" scale="1.2"></icon></button>
 			</div>
 		</div>
 

@@ -1,15 +1,16 @@
 <template>
 	<div class="pizza">
-		<div class="panel panel-default btn-default">
-			<div class="panel-heading" style="font-weight:bold; font-size:18px">{{name}}</div>
+		<div class="panel panel-default btn-default" @click="onClickPanelPizza">
+			<div class="panel-heading" style="font-weight:bold; font-size:18px">{{name}}
+			<span class="pull-right"><icon name="cart-plus" scale="1.2"></icon></span></div>
 			<div class="panel-body">
-				<p>{{price}}€</p>
 				Ingrédients:
 				<ul>
 					<li v-for="ing in listIngredients">{{ing.name}}</li>
 				</ul>
 				<p>Pâte: {{dough.name}}</p>
 				<p>Auteur: {{autor}}</p>
+				<p style="font-weight: bold; font-size: 15px">{{price}}€</p>
 			</div>
 		</div>
 	</div>
@@ -31,6 +32,11 @@ export default {
 			default: () => { return { name: '', price: 0 } }
 		},
 		autor: String
+	},
+	methods: {
+		onClickPanelPizza() {
+			this.$emit('addToCart')
+		}
 	},
 	computed: {
 		listIngredients () {

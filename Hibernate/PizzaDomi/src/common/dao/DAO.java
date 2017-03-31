@@ -8,15 +8,11 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
 import common.bean.Ingredients;
 import common.bean.Pate;
 import common.bean.Pizza;
 import common.bean.Users; 
 
-@Repository("dao")
 public class DAO { 
 
 	EntityManagerFactory emf = null; 
@@ -47,7 +43,7 @@ public class DAO {
 		} 
 	} 
 
-	@Transactional
+	
 	public void enregistrerIngredient(Ingredients ing) { 
 
 
@@ -58,13 +54,13 @@ public class DAO {
 
 	} 
 
-	@Transactional
+	
 	public List<Ingredients> getIngredients() { 
 		List <Ingredients> lst = em.createQuery("select i from Ingredients i").getResultList(); 
 		return lst; 
 	} 
 
-	@Transactional
+	
 	public Ingredients getIngredientsById(Integer id){
 		List<Ingredients> lst = em.createQuery("select i from Ingredients i where id="+id.intValue()).getResultList();
 		if(lst.isEmpty())
@@ -73,7 +69,7 @@ public class DAO {
 		return lst.get(0);
 	}
 
-	@Transactional
+	
 	public void enregistrerPate(Pate pate) { 
 
 
@@ -84,13 +80,13 @@ public class DAO {
 
 	} 
 
-	@Transactional
+	
 	public List<Pate> listerPates() { 
 		List <Pate> lst = em.createQuery("select p from Pate p").getResultList(); 
 		return lst; 
 	} 
 
-	@Transactional
+	
 	public void createPizza(Pizza piz) {
 
     	EntityTransaction tx = this.em.getTransaction(); 
@@ -100,7 +96,7 @@ public class DAO {
 
 	} 
 
-	@Transactional
+	
 	public void deletePizza(Integer id){
 		Pizza prod = getPizzaById(id);
 
@@ -110,7 +106,7 @@ public class DAO {
 		tx.commit();
 	}
 
-	@Transactional
+	
 	public List<Pizza> getPizzasByIngredients(List<Ingredients> blackList, List<Ingredients> whiteList) {
 		
 		String queryString = "select p from Pizza p where ";
@@ -144,13 +140,13 @@ public class DAO {
 		//return null;
 	} 
 
-	@Transactional
+	
 	public List<Pizza> getPizzas() { 
 		List <Pizza> lst = em.createQuery("select p from Pizza p").getResultList(); 
 		return lst; 
 	} 
 	
-	@Transactional
+	
 	public Pizza getPizzaById(Integer id){
 		List<Pizza> piz = em.createQuery("select p from produit p where id="+id.intValue()).getResultList();
 		if(piz.isEmpty())
@@ -159,13 +155,13 @@ public class DAO {
 		return piz.get(0);
 	}
 	
-	@Transactional
+	
 	public Collection<Users> getUserByIdPizza(Integer idPizza){
 		Pizza piz = this.getPizzaById(idPizza);
 		return piz.getUsers();
 	}
 
-	@Transactional
+	
 	public void createUser(Users usr) { 
 
     	EntityTransaction tx = this.em.getTransaction(); 
@@ -175,26 +171,26 @@ public class DAO {
 
 	} 
 	
-	@Transactional
+	
 	public void createUser(String nom, String mdp ) { 
 		Users usr = new Users(nom, mdp);
 		createUser(usr);
 
 	}
 	
-	@Transactional
+	
 	public int updateUser(Users usr ) { 
 		createUser(usr);
 		return 1;
 	}
 
-	@Transactional
+	
 	public List<Users> listerUser() { 
 		List <Users> lst = em.createQuery("select p from Users p").getResultList(); 
 		return lst; 
 	} 
 	
-	@Transactional
+	
 	public Users getUser(Integer id){
 		List<Users> usr = em.createQuery("select p from Users p where id="+id.intValue()).getResultList();
 		if(usr.isEmpty())
@@ -203,13 +199,13 @@ public class DAO {
 		return usr.get(0);
 	}
 	
-	@Transactional
+	
 	public Collection<Pizza> getUsersFavPizzas(Integer id){
 		Users usr = this.getUser(id);
 		return usr.getFavoris();
 	}
 	
-	@Transactional
+	
 	public String connexionUser(String nom, String mdp ){
 		List<Users> usr = em.createQuery("select p from Users p where nom="+nom+" and motDePasse="+mdp).getResultList();
 		if(usr.isEmpty())

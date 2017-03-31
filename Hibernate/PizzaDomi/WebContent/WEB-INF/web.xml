@@ -5,17 +5,21 @@
 	version="3.0">
 	<display-name>Archetype Created Web Application</display-name>
 	<servlet>
- <servlet-name>spring</servlet-name>
- <servlet-class>
-  org.springframework.web.servlet.DispatcherServlet
- </servlet-class>
- <load-on-startup>1</load-on-startup>
-</servlet>
+		<servlet-name>jersey-serlvet</servlet-name>
+		<servlet-class>
+                     com.sun.jersey.spi.container.servlet.ServletContainer
+                </servlet-class>
+		<init-param>
+		     <param-name>com.sun.jersey.config.property.packages</param-name>
+		     <param-value>common.controller</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
 
-<servlet-mapping>
- <servlet-name>spring</servlet-name>
- <url-pattern>/</url-pattern>
-</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>jersey-serlvet</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
 
 </web-app>
 

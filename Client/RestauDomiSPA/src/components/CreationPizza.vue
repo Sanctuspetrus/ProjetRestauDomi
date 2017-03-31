@@ -14,11 +14,11 @@
           </div>
           <div class="col-sm-6">
             <div class="panel panel-default">
-              <form class="form-horizontal">
-                <div class="form-group">
+              <form class="form-horizontal panel-droite">
+                <div class="form-group nom-pizza">
                   <label for="input-pizza-name" class="col-sm-6 control-label">Nom de la pizza: </label>
                   <div class="col-sm-6">
-                    <input type="text" name="" v-model="pizzaName">
+                    <input type="text" name="" v-model="pizzaName" class="btn-block">
                   </div>
                 </div>
                 <div class="form-group">
@@ -124,6 +124,15 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+.nom-pizza {
+  margin-top: 15px;
+}
+
+.panel-droite {
+  margin-right: 15px;
+}
+
 h1, h2 {
   font-weight: normal;
 }

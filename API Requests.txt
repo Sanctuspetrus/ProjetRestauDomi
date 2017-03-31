@@ -47,12 +47,12 @@ GET		/pizzas/{id}/favoris
 	Réponse : liste de d'utilisateur
 	La liste des utilisateurs ayant la pizza id en favoris
 
-POST	/pizzas
+POST	/pizzas/ingredient
 	Payload : {
 		noire : Liste d'ingrédients,
 		blanche : Liste d'ingrédients
 	}
-	Réponse : liste de pizzzas
+	Réponse : liste de pizzas
 	Liste de pizzas qui contiennent les ingrédients de la liste blanche mais pas ceux de la liste noire
 
 POST	/pizzas
@@ -61,7 +61,7 @@ POST	/pizzas
 
 PUT		/pizzas/{id}
 	Payload : objet pizza
-	Mise à jour de la pizza "id" avec les inofs fournies en payload
+	Mise à jour de la pizza "id" avec les infos fournies en payload
 
 DELETE 	/pizzas/{id}
 	Suppression de la pizza id (pour l'administration)

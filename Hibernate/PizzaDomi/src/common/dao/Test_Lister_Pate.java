@@ -12,7 +12,6 @@ public class Test_Lister_Pate {
   public static void main(String [] args) { 
      
     DAO dao = new DAO(); 
-    dao.ouvrir(); 
      
     List<Pate> pates = dao.listerPates(); 
      
@@ -22,8 +21,6 @@ public class Test_Lister_Pate {
     for (Pate in : pates) { 
       System.out.println("Pate "+in.getId()+" nom = "+in.getNom()+", prix = "+ in.getPrix()+"€");
     } 
-     
-    dao.fermer(); 
   } 
    
 }

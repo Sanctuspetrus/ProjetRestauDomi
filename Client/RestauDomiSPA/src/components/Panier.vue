@@ -13,99 +13,82 @@
       </thead>
       <tbody>
 
-        <tr v-for="pizza in listPizzasPanier">
-          <td>{{pizza.name}}</td>
-          <td>moult</td>
-          <td>{{pizza.price}}€</td>
+        <tr v-for="content in cartContent">
+          <td>{{content.pizza.name}}</td>
+          <td><input type="text" class="btn btn-info btn-xs input-class" size="1" name="" value="-" @click="delPizzaFromCart(content.pizza)">{{content.amount}}<input type="text" class="btn btn-info btn-xs input-class" name="" size="1" value="+" @click="addPizzaToCart(content.pizza)"></td>
+          <td>{{content.pizza.price}}€  </td>
         </tr>
       </tbody>
     </table>
     <p>Total : {{totalPrice}}€</p>
-    <button type="submit" @click="paiement" class="btn btn-warning">Valider le payement</button>
+    <button type="submit" @click="paiement" class="btn btn-warning">Valider le paiement</button>
+  </div>
 
+</template>
 
-    <div class="row">
-      <div class="col-sm-4" v-for="pizza in listPizzasPanier">
-        <div class="panel panel-default">
-          <div class="panel-heading" style="font-weight:bold; font-size:18px">{{pizza.name}}</div>
-          <div class="panel-body">
-            <p>{{pizza.price}}€</p>
-          </div>
-        </div>
-      </div>
-    </div>
+<script>
+import { mapGetters, mapActions } from 'vuex'
 
-
-
-  </template>
-
-  <script>
-
-  export default {
-    name: 'panier',
-    components: {
-    },
-    props: {
-    },
-    computed: {
-      totalPrice() {
-        var total = 0
-        for (var i = 0; i < this.listPizzasPanier.length; i++) {
-          total = total + this.listPizzasPanier[i].price
-        }
-        return total
+export default {
+  name: 'panier',
+  components: {
+  },
+  props: {
+  },
+  computed: {
+    totalPrice() {
+      var total = 0
+      for (var i = 0; i < this.cartContent.length; i++) {
+        total = total + this.cartContent[i].pizza.price * this.cartContent[i].amount
       }
+      return total
     },
-    data() {
-      return {
-        listPizzasPanier: [
-          {name: 'Margarita', price: 15},
-          {name: 'Margarita', price: 15},
-          {name: 'Reine', price: 5},
-          {name: 'Reine', price: 5},
-          {name: 'Reine', price: 5},
-          {name: 'Reine', price: 5},
-          {name: 'Reine', price: 5},
-          {name: 'Reine', price: 5},
-          {name: 'Reine', price: 5},
-          {name: 'Tartiflette', price: 20}
-        ]
-      }
-    },
-    watch: {
-    },
-    methods: {
-      paiement() {
-        alert('Payé !')
-      },
-      quantity(nom) {
-        var qty = 0
-        for (var p in this.listPizzasPanier) {
-          if (nom === p.name) qty++
-        }
-        return qty
-      }
+
+    ...mapGetters([
+      'allPizzas',
+      'cartContent'
+    ])
+  },
+  data() {
+    return {
     }
+  },
+  watch: {
+  },
+  methods: {
+    paiement() {
+      alert('Payé !')
+    },
+    ...mapActions([
+      'addPizzaToCart',
+      'delPizzaFromCart'
+    ])
   }
-  </script>
+}
+</script>
 
-  <!-- Add "scoped" attribute to limit CSS to this component only -->
-  <style scoped>
-  h1, h2 {
-    font-weight: normal;
-  }
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+h1, h2 {
+  font-weight: normal;
+}
 
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
+ul {
+  list-style-type: none;
+  padding: 0;
+}
 
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
 
-  a {
-    color: #f9a400;
-  }
-  </style>
+.input-class {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+a {
+  color: #f9a400;
+}
+</style>

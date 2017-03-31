@@ -20,13 +20,16 @@
 						<router-link to="/lacarte">La carte</router-link>
 					</li>
 					<li>
+						<router-link to="/creezVotrePizza">Créez votre pizza</router-link>
+					</li>
+					<li>
 						<router-link to="/commandes">Commandes</router-link>
 					</li>
 					<li>
-						<router-link to="/compte"><img class="logo" src="~assets/account-icon.png"></router-link>
+						<router-link to="/panier">Panier({{nbProduitDansPanier}})</router-link>
 					</li>
 					<li>
-						<router-link to="/panier">Panier</router-link>
+						<router-link to="/compte"><img class="logo" src="~assets/account-icon.png"></router-link>
 					</li>
 				</ul>
 			</div>
@@ -37,10 +40,26 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
 	data () {
 		return {
 		}
+	},
+	computed: {
+    ...mapGetters([
+      'cartContent'
+    ]),
+		nbProduitDansPanier() {
+			var total = 0
+			for (var i = 0; i < this.cartContent.length; i++) {
+				total = total + this.cartContent[i].amount
+			}
+			return total
+		}
+  },
+	method: {
+
 	}
 }
 </script>

@@ -41,84 +41,108 @@
       </div>
 
       <div class="pull-right" style="margin-right: 50px; margin-top: 25px">
-        <button type="submit" @click="" class="btn btn-warning btn-lg pull-right" >Valider</button>
+        <button type="submit" @click="clicktoCreatePizza()" class="btn btn-warning btn-lg pull-right" >Valider</button>
       </div>
     </div>
+  </div>
 
-  </template>
+</template>
 
-  <script>
-  import { mapGetters, mapActions } from 'vuex'
+<script>
+import { mapGetters, mapActions } from 'vuex'
 
-  export default {
-    name: 'creationPizza',
-    created () {
-      this.$store.dispatch('getAllPizzas')
-    },
-    components: {
-    },
-    props: {
-    },
-    computed: {
+export default {
+  name: 'creationPizza',
+  created () {
+    this.$store.dispatch('getAllPizzas')
+  },
+  components: {
+  },
+  props: {
+  },
+  computed: {
 
-      totalPrice() {
-        var total = 0
-        if (this.selectedPate != null) {
-          total = this.selectedPate.price
+    totalPrice() {
+      var total = 0
+      if (this.selectedPate != null) {
+        total = this.selectedPate.price
+      }
+      if (this.selectedIngredients != null) {
+        for (var i = 0; i < this.selectedIngredients.length; i++) {
+          total += this.selectedIngredients[i].price
         }
-        if (this.selectedIngredients != null) {
-          for (var i = 0; i < this.selectedIngredients.length; i++) {
-            total += this.selectedIngredients[i].price
-          }
-        }
-        return total
-      },
-
-      ...mapGetters([
-        'allIngredients',
-        'allDoughs'
-      ])
+      }
+      return total
     },
-    data() {
-      return {
-        selectedPate: null,
-        selectedIngredients: null,
-        pizzaName: '',
-        pateName: 'choisissez votre pâte'
+
+    ...mapGetters([
+      'allIngredients',
+      'allDoughs',
+      'error'
+    ])
+  },
+  data() {
+    return {
+      selectedPate: null,
+      selectedIngredients: null,
+      pizzaName: '',
+      pateName: 'choisissez votre pâte'
+    }
+  },
+  watch: {
+  },
+  methods: {
+    clicktoCreatePizza() {
+      if (this.pizzaName === '' || this.selectedPate === null || this.selectedIngredients === null) {
+        this.$toasted.error('Veuillez remplir tous les champs.', {duration: 1000})
+      } else {
+        this.setName(this.pizzaName)
+        this.setPrice(this.totalPrice)
+        this.setDough(this.selectedPate)
+        for (var i = 0; i < this.selectedIngredients.length; i++) {
+          this.addIngredient(this.selectedIngredients[i])
+        }
+        this.addPizza()
+        if (this.error.description === 'cette pizza existe déjà') {
+          this.$toasted.error('Ce nom existe déjà.', {duration: 1000})
+        } else {
+          this.$toasted.success(this.pizzaName + ' ajoutée au panier.', {duration: 1000})
+        }
       }
     },
-    watch: {
-    },
-    methods: {
-      ...mapActions([
-
-      ])
-    }
+    ...mapActions([
+      'addPizza',
+      'setName',
+      'setPrice',
+      'setDough',
+      'addIngredient'
+    ])
   }
-  </script>
+}
+</script>
 
-  <!-- Add "scoped" attribute to limit CSS to this component only -->
-  <style scoped>
-  h1, h2 {
-    font-weight: normal;
-  }
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+h1, h2 {
+  font-weight: normal;
+}
 
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
+ul {
+  list-style-type: none;
+  padding: 0;
+}
 
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
 
-  .input-class {
-    margin-left: 5px;
-    margin-right: 5px;
-  }
+.input-class {
+  margin-left: 5px;
+  margin-right: 5px;
+}
 
-  a {
-    color: #f9a400;
-  }
-  </style>
+a {
+  color: #f9a400;
+}
+</style>

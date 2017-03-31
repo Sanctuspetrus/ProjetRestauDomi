@@ -7,9 +7,11 @@ import store from 'src/store'
 import Toasted from 'vue-toasted'
 import 'vue-awesome/icons'
 import Icon from 'vue-awesome/components/Icon.vue'
+import vSelect from 'vue-select'
 
 Vue.component('icon', Icon)
 Vue.use(Toasted)
+Vue.component('v-select', vSelect)
 
 /* eslint-disable no-new */
 new Vue({

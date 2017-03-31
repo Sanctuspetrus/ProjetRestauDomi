@@ -19,6 +19,14 @@ const actions = {
 	},
 	delPizzaFromCart({ commit }, pizza) {
 		commit(types.DEL_PIZZA_FROM_CART, {pizza})
+	},
+	commander({ commit }) {
+		var commande = {
+			id: Math.random().toString(36).substring(7),
+			contenu: state.content
+		}
+		commit(types.NOUVELLE_COMMANDE, {commande})
+		commit(types.VIDER_LE_PANIER)
 	}
 }
 
@@ -43,6 +51,9 @@ const mutations = {
 				state.content.splice(index, 1)
 			}
 		}
+	},
+	[types.VIDER_LE_PANIER] (state) {
+		state.content = []
 	}
 }
 

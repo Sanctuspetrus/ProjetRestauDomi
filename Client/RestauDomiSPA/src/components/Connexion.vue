@@ -65,11 +65,10 @@ export default {
 
     connexion() {
       if (this.value.pseudo === 'moi' && this.value.password === 'meme') {
-        this.message = 'SUCCES !'
+        this.message = 'SUCCESS !'
         this.value.connected = true
       }
     }
-
   }
 
 }

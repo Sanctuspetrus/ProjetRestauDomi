@@ -9,7 +9,7 @@
 				:dough="pizza.dough"
 				:autor="pizza.autor"
 				></pizza-carte>
-				<button @click="clickToAddPizza(pizza)">Ajouter au panier</button>
+				<button @click="clickToAddPizza(pizza)">Ajouter au panier <icon name="cart-plus" scale="1.2"></icon></button>
 			</div>
 		</div>
 

@@ -1,8 +1,8 @@
 <template>
 	<div class="pizza">
-		<div class="panel panel-default btn-default" @click="onClickPanelPizza">
-			<div class="panel-heading" style="font-weight:bold; font-size:18px">{{name}}
-			<span class="pull-right"><icon name="cart-plus" scale="1.2"></icon></span></div>
+		<div class="panel panel-default">
+			<div class="panel-heading style-text">{{name}}
+			</div>
 			<div class="panel-body">
 				Ingrédients:
 				<ul>
@@ -10,7 +10,12 @@
 				</ul>
 				<p>Pâte: {{dough.name}}</p>
 				<p>Auteur: {{autor}}</p>
-				<p style="font-weight: bold; font-size: 15px">{{price}}€</p>
+				<span class="pull-right style-text">
+					<span class="price">{{price}}€</span>
+					<button @click="onClickPanelPizza()" class="btn btn-warning">
+						<icon name="cart-plus" scale="1.5" ></icon>
+					</button>
+				</span>
 			</div>
 		</div>
 	</div>
@@ -48,21 +53,36 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-	h1, h2 {
-		font-weight: normal;
-	}
 
-	ul {
-		list-style-type: none;
-		padding: 0;
-	}
+.price {
+	margin-left: 5px;
+}
 
-	li {
-		display: inline-block;
-		margin: 0 10px;
-	}
+.style-text {
+	font-weight: bold;
+	font-size: 20px;
+}
 
-	a {
-		color: #f9a400;
-	}
+.bordererer {
+	border: 2px solid orange;
+	border-radius: 5px;
+}
+
+h1, h2 {
+	font-weight: normal;
+}
+
+ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+li {
+	display: inline-block;
+	margin: 0 10px;
+}
+
+a {
+	color: #f9a400;
+}
 </style>
